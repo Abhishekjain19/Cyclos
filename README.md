@@ -1,16 +1,28 @@
-# React + Vite
+# Cyclos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cyclos is a React-based web application built to support sustainable practices through localized mapping and a community marketplace. It features user authentication, a domain-based onboarding flow, and interactive geospatial tools.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **User Authentication:** Firebase-backed sign-up and login flows.
+* **Domain Onboarding:** Multi-step selection for primary and secondary user interests.
+* **Interactive Mapping:** Geolocation and spatial data visualization using Leaflet.
+* **Marketplace:** Interface for browsing and exchanging items within the community.
+* **Scanning Utility:** Built-in tool for processing item data.
+* **Fluid UI/UX:** Component animations powered by GSAP and Framer Motion.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Framework:** React 19 (Vite)
+* **Routing:** React Router DOM v7
+* **Backend Services:** Firebase (Auth, Firestore)
+* **Mapping:** Leaflet, React-Leaflet
+* **Animation:** GSAP, Framer Motion
+* **Styling:** Custom CSS
 
-## Expanding the ESLint configuration
+## Local Development Setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/Abhishekjain19/Cyclos.git](https://github.com/Abhishekjain19/Cyclos.git)
+   cd Cyclos
