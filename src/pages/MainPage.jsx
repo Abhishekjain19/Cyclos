@@ -6,11 +6,11 @@ import { TbEdit, TbBell, TbLeaf, TbBolt, TbRecycle, TbShirt, TbPlant2 } from 're
 
 /* Secondary domain materials — icon + colour mapping */
 const SECONDARY_MATERIALS = [
-  { id: 'compost',  label: 'Compost',  Icon: TbPlant2, bg: '#dcfce7' },
-  { id: 'metals',   label: 'Metals',   Icon: TbRecycle, bg: '#e0f2fe' },
-  { id: 'textiles', label: 'Textiles', Icon: TbShirt,   bg: '#fef08a' },
-  { id: 'biofuel',  label: 'Bio Fuel', Icon: TbBolt,    bg: '#ffedd5' },
-  { id: 'rubber',   label: 'Rubber',   Icon: TbLeaf,    bg: '#f3e8ff' },
+  { id: 'compost', label: 'Compost', Icon: TbPlant2, bg: '#dcfce7' },
+  { id: 'metals', label: 'Metals', Icon: TbRecycle, bg: '#e0f2fe' },
+  { id: 'textiles', label: 'Textiles', Icon: TbShirt, bg: '#fef08a' },
+  { id: 'biofuel', label: 'Bio Fuel', Icon: TbBolt, bg: '#ffedd5' },
+  { id: 'rubber', label: 'Rubber', Icon: TbLeaf, bg: '#f3e8ff' },
 ];
 import MapSection from '../components/MapSection';
 import LocalFactsCarousel from '../components/LocalFactsCarousel';
@@ -19,15 +19,15 @@ import './MainPage.css';
 export default function MainPage() {
   const { user, userProfile } = useAuth();
   const navigate = useNavigate();
-  
+
   const firstName = user?.name?.split(' ')[0] || 'Leonard';
   const fullName = user?.name || 'Leonard N. Olson';
-  const locationText = userProfile?.primaryDomain ? '20 Cooper Square, NY 10' : 'Local Eco Hub';
+  const locationText = userProfile?.primaryDomain ? 'Malleshwaram, Bengaluru' : 'Local Eco Hub';
 
   return (
     <div className="main-page">
       {/* Top Purple Block */}
-      <motion.div 
+      <motion.div
         className="dash-header__block"
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -71,17 +71,17 @@ export default function MainPage() {
 
       <div className="dash-content">
         {/* Map Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
           <div className="dash-section-header">
-            <h3 className="dash-section-title">Nearby bin station</h3>
+            <h3 className="dash-section-title">Nearby bin stations</h3>
             {/* <a href="#" className="dash-section-viewall">View all</a>` */}
           </div>
           <div className="dash-map-card">
-             <MapSection domain={userProfile?.secondaryDomain} />
+            <MapSection domain={userProfile?.secondaryDomain} />
           </div>
         </motion.div>
 
@@ -96,7 +96,7 @@ export default function MainPage() {
             <h3 className="dash-section-title">Materials</h3>
             <a href="/marketplace" className="dash-section-viewall">View all</a>
           </div>
-          
+
           <div className="dash-materials-scroll">
             {SECONDARY_MATERIALS.map(({ id, label, Icon, bg }) => (
               <div key={id} className="material-card" style={{ background: bg }}>
@@ -114,9 +114,9 @@ export default function MainPage() {
           transition={{ delay: 0.4 }}
           style={{ marginBottom: '120px' }}
         >
-          <hr style={{height: "2px", borderWidth: 0, backgroundColor: "white"}} />
+          <hr style={{ height: "2px", borderWidth: 0, backgroundColor: "white" }} />
           <LocalFactsCarousel location={locationText} />
-          <hr style={{height: "2px", borderWidth: 0, backgroundColor: "white"}} />
+          <hr style={{ height: "2px", borderWidth: 0, backgroundColor: "white" }} />
         </motion.div>
       </div>
     </div>
