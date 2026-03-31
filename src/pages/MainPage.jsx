@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { TbEdit, TbHome, TbScan, TbMapPin, TbPlant, TbLeaf, TbTrophy } from 'react-icons/tb';
+import { TbEdit, TbHome, TbScan, TbBuildingStore, TbRobot, TbPlant, TbLeaf, TbTrophy, TbBell } from 'react-icons/tb';
 import MapSection from '../components/MapSection';
+import LocalFactsCarousel from '../components/LocalFactsCarousel';
 import './MainPage.css';
 
 export default function MainPage() {
@@ -32,9 +33,14 @@ export default function MainPage() {
             <h2 className="dash-profile-name">{fullName}</h2>
             <p className="dash-profile-sub">{locationText}</p>
           </div>
-          <button className="dash-profile-edit" aria-label="Edit Profile">
-            <TbEdit size={16} />
-          </button>
+          <div className="dash-profile-actions" style={{ display: 'flex', gap: '8px' }}>
+            <button className="dash-profile-edit" aria-label="Notifications" onClick={() => navigate('/notifications')}>
+              <TbBell size={16} />
+            </button>
+            <button className="dash-profile-edit" aria-label="Dashboard" onClick={() => navigate('/dashboard')}>
+              <TbEdit size={16} />
+            </button>
+          </div>
         </div>
 
         {/* Stats Row */}
@@ -75,7 +81,7 @@ export default function MainPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          style={{ marginBottom: '80px' }}
+          style={{ marginBottom: '32px' }}
         >
           <div className="dash-section-header" style={{ marginTop: '32px' }}>
             <h3 className="dash-section-title">Materials</h3>
@@ -97,25 +103,19 @@ export default function MainPage() {
             </div>
           </div>
         </motion.div>
-      </div>
 
-      {/* Replaced Bottom Nav with the custom floating one */}
-      <div className="bottom-nav-app">
-        <div className="bottom-nav-app__icon active">
-          <TbHome />
-        </div>
-        <div 
-           className="bottom-nav-app__scan" 
-           onClick={() => navigate('/scanner')}
+        {/* Local Facts Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          style={{ marginBottom: '120px' }}
         >
-          <TbScan />
-        </div>
-        <div 
-           className="bottom-nav-app__icon"
-           onClick={() => navigate('/marketplace')}
-        >
-          <TbMapPin />
-        </div>
+          <div className="dash-section-header">
+            <h3 className="dash-section-title">Facts</h3>
+          </div>
+          <LocalFactsCarousel location={locationText} />
+        </motion.div>
       </div>
     </div>
   );

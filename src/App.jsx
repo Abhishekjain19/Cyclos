@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LandingPage from './pages/LandingPage';
 import SignUpPage from './pages/SignUpPage';
@@ -10,6 +10,7 @@ import './index.css';
 
 import ScanPage from './pages/ScanPage';
 import MarketPage from './pages/MarketPage';
+import BottomNav from './components/BottomNav';
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -24,17 +25,24 @@ const OnboardRoute = ({ children }) => {
 };
 
 function AppRoutes() {
+  const location = useLocation();
+  const hideNavPaths = ['/', '/signup', '/login', '/onboard/primary', '/onboard/secondary'];
+  const showNav = !hideNavPaths.includes(location.pathname);
+
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/onboard/primary" element={<OnboardRoute><PrimaryDomainPage /></OnboardRoute>} />
-      <Route path="/onboard/secondary" element={<OnboardRoute><SecondaryDomainPage /></OnboardRoute>} />
-      <Route path="/app" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
-      <Route path="/scanner" element={<ProtectedRoute><ScanPage /></ProtectedRoute>} />
-      <Route path="/marketplace" element={<ProtectedRoute><MarketPage /></ProtectedRoute>} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/onboard/primary" element={<OnboardRoute><PrimaryDomainPage /></OnboardRoute>} />
+        <Route path="/onboard/secondary" element={<OnboardRoute><SecondaryDomainPage /></OnboardRoute>} />
+        <Route path="/app" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
+        <Route path="/scanner" element={<ProtectedRoute><ScanPage /></ProtectedRoute>} />
+        <Route path="/marketplace" element={<ProtectedRoute><MarketPage /></ProtectedRoute>} />
+      </Routes>
+      {showNav && <BottomNav />}
+    </>
   );
 }
 

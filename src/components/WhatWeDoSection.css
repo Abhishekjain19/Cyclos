@@ -49,6 +49,7 @@
 .wwd__title span.gradient-text {
   background: linear-gradient(135deg, #059669, #34d399);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
