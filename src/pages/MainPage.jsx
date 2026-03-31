@@ -111,10 +111,9 @@ export default function MainPage() {
           transition={{ delay: 0.4 }}
           style={{ marginBottom: '120px' }}
         >
-          <div className="dash-section-header">
-            <h3 className="dash-section-title">Facts</h3>
-          </div>
+          <hr style={{height: "2px", borderWidth: 0, backgroundColor: "white"}} />
           <LocalFactsCarousel location={locationText} />
+          <hr style={{height: "2px", borderWidth: 0, backgroundColor: "white"}} />
         </motion.div>
       </div>
     </div>
