@@ -332,13 +332,18 @@
 /* ── Detail footer ───────────────────────────────────────── */
 .mkt-detail__footer {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 100px;
+  left: 20px;
+  right: 20px;
   padding: 16px 20px;
-  background: linear-gradient(to top, #110e1b 80%, transparent);
+  background: #1a1625;
+  border: 1.5px solid rgba(117,67,255,0.3);
+  border-radius: 50px;
   display: flex;
   align-items: center;
   gap: 16px;
   z-index: 310;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .mkt-detail__qty {
   display: flex; align-items: center; gap: 16px;

@@ -76,7 +76,7 @@
 .scan-result-card {
   background: #1a1625;
   border-radius: 32px 32px 0 0;
-  padding: 32px 24px;
+  padding: 32px 24px 120px 24px;
   margin-top: auto;
 }
 
@@ -117,7 +117,7 @@
 
 .scan-result-btn {
   background: #a3e635; /* Lime green from image */
-  color: #110e1b;
+  color:white;
   border: none;
   width: 100%;
   padding: 18px;
@@ -130,6 +130,7 @@
 }
 
 .scan-result-btn:hover {
-  background: #bbf7d0;
+  background: #33d16a;
   transform: translateY(-2px);
+  color: whitesmoke;
 }

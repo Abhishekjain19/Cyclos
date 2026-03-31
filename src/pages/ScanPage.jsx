@@ -79,7 +79,7 @@ export default function ScanPage() {
         </div>
 
         <button className="scan-result-btn">
-          {scanned ? 'Add to bin' : 'Scanning...'}
+          {scanned ? 'Add to bin station' : 'Scanning...'}
         </button>
       </motion.div>
     </div>

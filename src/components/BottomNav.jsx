@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { TbHome, TbScan, TbBuildingStore, TbRobot } from 'react-icons/tb';
+import { TbHome, TbScan, TbBuildingStore, TbRobot, TbMessageCircle } from 'react-icons/tb';
 import './BottomNav.css';
 
 export default function BottomNav() {
@@ -37,6 +37,12 @@ export default function BottomNav() {
          onClick={() => handleNav('/chatbot')}
       >
         <TbRobot />
+      </div>
+      <div 
+         className={`bottom-nav-app__item ${isActive(['/chat']) ? 'scan-active' : ''}`}
+         onClick={() => handleNav('/chat')}
+      >
+        <TbMessageCircle />
       </div>
     </div>
   );

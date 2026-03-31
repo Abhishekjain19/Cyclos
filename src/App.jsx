@@ -10,6 +10,7 @@ import './index.css';
 
 import ScanPage from './pages/ScanPage';
 import MarketPage from './pages/MarketPage';
+import ChatPage from './pages/ChatPage';
 import BottomNav from './components/BottomNav';
 
 const ProtectedRoute = ({ children }) => {
@@ -40,6 +41,7 @@ function AppRoutes() {
         <Route path="/app" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
         <Route path="/scanner" element={<ProtectedRoute><ScanPage /></ProtectedRoute>} />
         <Route path="/marketplace" element={<ProtectedRoute><MarketPage /></ProtectedRoute>} />
+        <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
       </Routes>
       {showNav && <BottomNav />}
     </>
