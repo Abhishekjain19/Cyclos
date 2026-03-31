@@ -24,7 +24,7 @@ export default function LoginPage() {
     setError('');
     await new Promise(r => setTimeout(r, 900));
     const name = form.email.split('@')[0].replace(/\./g, ' ');
-    login({ name: name.charAt(0).toUpperCase() + name.slice(1), email: form.email });
+    login({ name: name.charAt(0).toUpperCase() + name.slice(1), email: form.email }, false);
     setLoading(false);
     navigate('/app');
   };
@@ -32,7 +32,7 @@ export default function LoginPage() {
   const handleSocial = async () => {
     setLoading(true);
     await new Promise(r => setTimeout(r, 700));
-    login({ name: 'Google User', email: 'user@gmail.com' });
+    login({ name: 'Google User', email: 'user@gmail.com' }, false);
     setLoading(false);
     navigate('/app');
   };

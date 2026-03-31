@@ -26,7 +26,7 @@ export default function SignUpPage() {
     setLoading(true);
     setError('');
     await new Promise(r => setTimeout(r, 1000));
-    login({ name: form.name, email: form.email, avatar: null });
+    login({ name: form.name, email: form.email, avatar: null }, true);
     setLoading(false);
     navigate('/onboard/primary');
   };
@@ -34,7 +34,7 @@ export default function SignUpPage() {
   const handleSocial = async () => {
     setLoading(true);
     await new Promise(r => setTimeout(r, 800));
-    login({ name: 'Google User', email: 'user@gmail.com', avatar: null });
+    login({ name: 'Google User', email: 'user@gmail.com', avatar: null }, true);
     setLoading(false);
     navigate('/onboard/primary');
   };

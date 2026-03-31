@@ -12,10 +12,15 @@ export const AuthProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : null;
   });
 
-  const login = (userData) => {
+  const login = (userData, clearProfile = false) => {
     const u = { ...userData, id: Date.now() };
     setUser(u);
     localStorage.setItem('cyclos_user', JSON.stringify(u));
+    
+    if (clearProfile) {
+      setUserProfile(null);
+      localStorage.removeItem('cyclos_profile');
+    }
   };
 
   const logout = () => {
