@@ -8,6 +8,9 @@ import SecondaryDomainPage from './pages/SecondaryDomainPage';
 import MainPage from './pages/MainPage';
 import './index.css';
 
+import ScanPage from './pages/ScanPage';
+import MarketPage from './pages/MarketPage';
+
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" replace />;
@@ -29,6 +32,8 @@ function AppRoutes() {
       <Route path="/onboard/primary" element={<OnboardRoute><PrimaryDomainPage /></OnboardRoute>} />
       <Route path="/onboard/secondary" element={<OnboardRoute><SecondaryDomainPage /></OnboardRoute>} />
       <Route path="/app" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
+      <Route path="/scanner" element={<ProtectedRoute><ScanPage /></ProtectedRoute>} />
+      <Route path="/marketplace" element={<ProtectedRoute><MarketPage /></ProtectedRoute>} />
     </Routes>
   );
 }

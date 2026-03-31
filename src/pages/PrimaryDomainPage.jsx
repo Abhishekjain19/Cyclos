@@ -1,113 +1,124 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { TbArrowRight, TbCheck } from 'react-icons/tb';
+import { TbArrowLeft, TbMessageCircle, TbBell, TbClipboardList, TbX } from 'react-icons/tb';
 import './DomainPage.css';
 
 const DOMAINS = [
-  { id: 'manufacturing', emoji: '🏭', title: 'Manufacturing', desc: 'Industrial production, assembly, fabrication' },
-  { id: 'hospitality', emoji: '🏨', title: 'Hospitality & Food', desc: 'Restaurants, hotels, food processing' },
-  { id: 'healthcare', emoji: '🏥', title: 'Healthcare', desc: 'Hospitals, clinics, pharma labs' },
-  { id: 'construction', emoji: '🏗️', title: 'Construction', desc: 'Building materials, demolition waste' },
-  { id: 'retail', emoji: '🛒', title: 'Retail & Commerce', desc: 'Packaging, unsold goods, returns' },
-  { id: 'agriculture', emoji: '🌾', title: 'Agriculture', desc: 'Crop residue, organic waste, farm byproducts' },
-  { id: 'electronics', emoji: '💻', title: 'Electronics & IT', desc: 'E-waste, circuit boards, cables' },
-  { id: 'textile', emoji: '👕', title: 'Textile & Fashion', desc: 'Fabric scraps, unsold inventory' },
-  { id: 'education', emoji: '🎓', title: 'Education', desc: 'Paper, stationery, lab waste' },
-  { id: 'municipal', emoji: '🏛️', title: 'Municipal Body', desc: 'Community waste management' },
-  { id: 'logistics', emoji: '🚚', title: 'Logistics & Transport', desc: 'Packaging, oil, tire waste' },
-  { id: 'other', emoji: '🌿', title: 'Other', desc: 'General or mixed waste categories' },
+  { id: 'cloth', emoji: '👕', title: 'CLOTH', bg: '#d4a373' },
+  { id: 'ewaste', emoji: '💻', title: 'E-WASTE', bg: '#8ecae6' },
+  { id: 'paper', emoji: '📰', title: 'PAPER', bg: '#e0e1dd' },
+  { id: 'glass', emoji: '🫙', title: 'GLASS', bg: '#4a4e69' },
+  { id: 'plastic', emoji: '🥤', title: 'PLASTIC', bg: '#f8edeb' },
 ];
 
 export default function PrimaryDomainPage() {
   const navigate = useNavigate();
   const { updateProfile } = useAuth();
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const toggleSelect = (id) => {
+    setSelected(prev => 
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
+
   const handleContinue = async () => {
-    if (!selected) return;
+    if (selected.length === 0) return;
     setLoading(true);
     await new Promise(r => setTimeout(r, 600));
-    updateProfile({ primaryDomain: selected });
+    updateProfile({ primaryDomain: selected[0] }); // Just taking the first for now to maintain compat
     setLoading(false);
     navigate('/onboard/secondary');
   };
 
   return (
     <div className="domain-page">
-      <div className="domain-page__blob domain-page__blob--1" />
-      <div className="domain-page__blob domain-page__blob--2" />
-
-      <div className="container domain-page__inner">
-        <motion.div
-          className="domain-page__header"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="domain-page__step">Step 1 of 2</div>
-          <h1 className="domain-page__title">Your Primary Domain</h1>
-          <p className="domain-page__sub">
-            Where do you work or operate? This helps us tailor recycling opportunities for the waste <em>you generate</em>.
-          </p>
-          <div className="domain-page__progress">
-            <div className="domain-page__progress-bar" style={{ width: '50%' }} />
+      <div className="domain-page__header">
+        <div className="domain-page__nav">
+          <button className="domain-page__nav-btn" onClick={() => navigate(-1)}>
+            <TbArrowLeft size={22} />
+          </button>
+          <div className="domain-page__nav-icons">
+            <TbMessageCircle />
+            <TbBell />
           </div>
+        </div>
+        
+        <motion.div 
+          className="domain-page__illustration"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, type: 'spring', bounce: 0.4 }}
+        >
+          🌍🪴
         </motion.div>
-
+        
         <motion.div
+          className="domain-page__title-pill"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          Select Waste Type
+        </motion.div>
+      </div>
+
+      <div className="domain-page__body">
+        <div className="domain-page__list-header">
+          <div className="domain-page__list-header-left">
+            <span>Waste price list</span>
+            <TbClipboardList size={18} />
+          </div>
+          <motion.div 
+            className="domain-page__list-header-right"
+            key={selected.length}
+            initial={{ scale: 1.1, color: '#aee1d8' }}
+            animate={{ scale: 1, color: '#ffffff' }}
+          >
+            {selected.length} Selected <TbX size={16} onClick={() => setSelected([])} />
+          </motion.div>
+        </div>
+
+        <motion.div 
           className="domain-grid"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.3 }}
         >
-          {DOMAINS.map((d, i) => (
-            <motion.button
-              key={d.id}
-              className={`domain-card ${selected === d.id ? 'domain-card--selected' : ''}`}
-              onClick={() => setSelected(d.id)}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.04, duration: 0.4 }}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="domain-card__emoji">{d.emoji}</span>
-              <span className="domain-card__title">{d.title}</span>
-              <span className="domain-card__desc">{d.desc}</span>
-              {selected === d.id && (
-                <motion.div
-                  className="domain-card__check"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-                >
-                  <TbCheck size={12} />
-                </motion.div>
-              )}
-            </motion.button>
-          ))}
+          {DOMAINS.map((d, i) => {
+            const isSelected = selected.includes(d.id);
+            return (
+              <motion.div
+                key={d.id}
+                className={`domain-card ${isSelected ? 'domain-card--selected' : ''}`}
+                style={{ backgroundColor: d.bg }}
+                onClick={() => toggleSelect(d.id)}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 + (i * 0.05) }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {!isSelected && <span className="domain-card__plus">+</span>}
+                <span className="domain-card__emoji">{d.emoji}</span>
+                <span className="domain-card__title">{d.title}</span>
+              </motion.div>
+            );
+          })}
         </motion.div>
+      </div>
 
-        <motion.div
-          className="domain-page__footer"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
+      <div className="domain-page__footer">
+        <button 
+          className="domain-page__cta"
+          onClick={handleContinue}
+          disabled={selected.length === 0 || loading}
         >
-          <button
-            className="btn-primary domain-page__cta"
-            onClick={handleContinue}
-            disabled={!selected || loading}
-          >
-            <span>
-              {loading ? <><div className="spinner" /> Saving…</> : <>Continue <TbArrowRight size={18} /></>}
-            </span>
-          </button>
-          <p className="domain-page__hint">Select your primary industry domain to proceed</p>
-        </motion.div>
+          {loading ? 'PROCESSING...' : 'CONTINUE'}
+        </button>
       </div>
     </div>
   );

@@ -1,221 +1,122 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useAuth } from '../context/AuthContext';
-import { gsap } from 'gsap';
-import {
-  TbLeaf, TbStar, TbCloudSnow, TbRecycle, TbShoppingBag,
-  TbBell, TbSettings, TbLogout, TbTrendingUp, TbAward
-} from 'react-icons/tb';
-import BottomNav from '../components/BottomNav';
-import MapSection from '../components/MapSection';
-import TipsCarousel from '../components/TipsCarousel';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
+import { TbEdit, TbHome, TbScan, TbMapPin, TbPlant, TbLeaf, TbTrophy } from 'react-icons/tb';
+import MapSection from '../components/MapSection';
 import './MainPage.css';
 
-const STAT_CARDS = (profile, name) => [
-  {
-    label: 'Eco Points',
-    value: 1284,
-    icon: <TbStar size={20} />,
-    color: '#4ade80',
-    bg: 'rgba(74,222,128,0.1)',
-    suffix: 'pts',
-    change: '+18 today'
-  },
-  {
-    label: 'Carbon Saved',
-    value: 6.8,
-    icon: <TbCloudSnow size={20} />,
-    color: '#60a5fa',
-    bg: 'rgba(96,165,250,0.1)',
-    suffix: 'T CO₂',
-    change: '+0.3 this week'
-  },
-  {
-    label: 'Items Recycled',
-    value: 47,
-    icon: <TbRecycle size={20} />,
-    color: '#a78bfa',
-    bg: 'rgba(167,139,250,0.1)',
-    suffix: 'items',
-    change: '+3 this month'
-  },
-  {
-    label: 'Purchases',
-    value: 12,
-    icon: <TbShoppingBag size={20} />,
-    color: '#fb923c',
-    bg: 'rgba(251,146,60,0.1)',
-    suffix: 'orders',
-    change: 'Last: 2 days ago'
-  },
-];
-
-function AnimatedCounter({ end, decimals = 0 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!inView) return;
-    const obj = { val: 0 };
-    gsap.to(obj, {
-      val: end,
-      duration: 1.8,
-      ease: 'power2.out',
-      onUpdate: () => {
-        if (ref.current) {
-          ref.current.textContent = decimals > 0
-            ? obj.val.toFixed(decimals)
-            : Math.floor(obj.val).toLocaleString();
-        }
-      }
-    });
-  }, [inView, end, decimals]);
-
-  return <span ref={ref}>0</span>;
-}
-
 export default function MainPage() {
-  const { user, userProfile, logout } = useAuth();
+  const { user, userProfile } = useAuth();
   const navigate = useNavigate();
-  const [greeting, setGreeting] = useState('');
-
-  useEffect(() => {
-    const h = new Date().getHours();
-    if (h < 12) setGreeting('Good morning');
-    else if (h < 17) setGreeting('Good afternoon');
-    else setGreeting('Good evening');
-  }, []);
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
-
-  const stats = STAT_CARDS(userProfile, user?.name);
-  const firstName = user?.name?.split(' ')[0] || 'Eco Hero';
+  
+  const firstName = user?.name?.split(' ')[0] || 'Leonard';
+  const fullName = user?.name || 'Leonard N. Olson';
+  const locationText = userProfile?.primaryDomain ? '20 Cooper Square, NY 10' : 'Local Eco Hub';
 
   return (
     <div className="main-page">
-      {/* Top Header */}
-      <motion.header
-        className="main-header"
-        initial={{ y: -60, opacity: 0 }}
+      {/* Top Purple Block */}
+      <motion.div 
+        className="dash-header__block"
+        initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5 }}
       >
-        <div className="container main-header__inner">
-          <div className="main-header__brand">
-            <div className="main-header__logo">
-              <TbLeaf size={18} />
-            </div>
-            <span className="main-header__logo-text">Cyclos</span>
+        {/* Profile Pill */}
+        <div className="dash-profile-pill">
+          <div className="dash-profile-avatar">
+            {firstName.charAt(0).toUpperCase()}
           </div>
-          <div className="main-header__actions">
-            <button className="main-header__icon-btn" aria-label="Notifications">
-              <TbBell size={20} />
-              <span className="main-header__notif-dot" />
-            </button>
-            <button className="main-header__icon-btn" aria-label="Settings">
-              <TbSettings size={20} />
-            </button>
-            <button className="main-header__icon-btn main-header__logout" onClick={handleLogout} aria-label="Logout">
-              <TbLogout size={20} />
-            </button>
+          <div className="dash-profile-info">
+            <h2 className="dash-profile-name">{fullName}</h2>
+            <p className="dash-profile-sub">{locationText}</p>
+          </div>
+          <button className="dash-profile-edit" aria-label="Edit Profile">
+            <TbEdit size={16} />
+          </button>
+        </div>
+
+        {/* Stats Row */}
+        <div className="dash-stats-row">
+          <div className="dash-stat-minicard" style={{ background: '#1a1625' }}>
+            <span className="dash-stat-val">3.5 kg</span>
+            <span className="dash-stat-label">Recycle</span>
+          </div>
+          <div className="dash-stat-minicard" style={{ background: '#1a1625' }}>
+            <span className="dash-stat-val">5.2 g</span>
+            <span className="dash-stat-label">Carbon</span>
+          </div>
+          <div className="dash-stat-minicard" style={{ background: '#1a1625' }}>
+            <span className="dash-stat-val">5287</span>
+            <span className="dash-stat-label">Points</span>
           </div>
         </div>
-      </motion.header>
+      </motion.div>
 
-      <div className="container main-page__content">
-        {/* Mini Dashboard */}
-        <motion.section
-          className="dash-section"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="dash-section__top">
-            <div className="dash-section__greeting">
-              <div className="dash-section__avatar">
-                {firstName.charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <p className="dash-section__hello">{greeting}, <strong>{firstName}!</strong> 👋</p>
-                <p className="dash-section__domain">
-                  {userProfile?.primaryDomain
-                    ? `🏭 ${userProfile.primaryDomain.charAt(0).toUpperCase() + userProfile.primaryDomain.slice(1)} · Producer`
-                    : '🌿 Eco Advocate'}
-                </p>
-              </div>
-            </div>
-            <div className="dash-section__level">
-              <TbAward size={16} />
-              <span>Green Champion</span>
-            </div>
-          </div>
-
-          <div className="dash-stats-grid">
-            {stats.map((s, i) => (
-              <motion.div
-                key={i}
-                className="dash-stat-card"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 + i * 0.08, duration: 0.5 }}
-                whileHover={{ y: -4 }}
-              >
-                <div className="dash-stat-card__icon" style={{ color: s.color, background: s.bg }}>
-                  {s.icon}
-                </div>
-                <div className="dash-stat-card__body">
-                  <div className="dash-stat-card__value">
-                    {s.label === 'Carbon Saved'
-                      ? <><AnimatedCounter end={s.value} decimals={1} /><span className="dash-stat-card__suffix"> {s.suffix}</span></>
-                      : <><AnimatedCounter end={s.value} /><span className="dash-stat-card__suffix"> {s.suffix}</span></>
-                    }
-                  </div>
-                  <div className="dash-stat-card__label">{s.label}</div>
-                  <div className="dash-stat-card__change">
-                    <TbTrendingUp size={11} /> {s.change}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
+      <div className="dash-content">
         {/* Map Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
+          transition={{ delay: 0.2 }}
         >
-          <div className="section-label">
-            <span>📍 Nearby Marketplace</span>
-            {userProfile?.secondaryDomain && (
-              <span className="section-label__tag">
-                {userProfile.secondaryDomain.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
-              </span>
-            )}
+          <div className="dash-section-header">
+            <h3 className="dash-section-title">Nearby bin station</h3>
+            <a href="#" className="dash-section-viewall">View all</a>
           </div>
-          <MapSection domain={userProfile?.secondaryDomain} />
-        </motion.section>
+          <div className="dash-map-card">
+             <MapSection domain={userProfile?.secondaryDomain} />
+          </div>
+        </motion.div>
 
-        {/* Tips Carousel */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
+        {/* Materials Scroll */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-          style={{ marginBottom: '120px' }}
+          transition={{ delay: 0.3 }}
+          style={{ marginBottom: '80px' }}
         >
-          <div className="section-label">
-            <span>💡 Tips & Facts</span>
+          <div className="dash-section-header" style={{ marginTop: '32px' }}>
+            <h3 className="dash-section-title">Materials</h3>
+            <a href="/marketplace" className="dash-section-viewall">View all</a>
           </div>
-          <TipsCarousel />
-        </motion.section>
+          
+          <div className="dash-materials-scroll">
+            <div className="material-card material-bg-1">
+               <TbPlant size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
+               <div className="material-card__label">Plastic</div>
+            </div>
+            <div className="material-card material-bg-2">
+               <TbLeaf size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
+               <div className="material-card__label">Glass</div>
+            </div>
+            <div className="material-card material-bg-3">
+               <TbTrophy size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
+               <div className="material-card__label">Paper</div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
-      <BottomNav />
+      {/* Replaced Bottom Nav with the custom floating one */}
+      <div className="bottom-nav-app">
+        <div className="bottom-nav-app__icon active">
+          <TbHome />
+        </div>
+        <div 
+           className="bottom-nav-app__scan" 
+           onClick={() => navigate('/scanner')}
+        >
+          <TbScan />
+        </div>
+        <div 
+           className="bottom-nav-app__icon"
+           onClick={() => navigate('/marketplace')}
+        >
+          <TbMapPin />
+        </div>
+      </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}
+      className={`navbar ${scrolled ? 'navbar--scrolled' : ''} ${open ? 'navbar--open' : ''}`}
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -63,11 +63,11 @@ export default function Navbar() {
             <a href="#what-we-do" className="navbar__mobile-link" onClick={() => setOpen(false)}>What We Do</a>
             <a href="#about" className="navbar__mobile-link" onClick={() => setOpen(false)}>About</a>
             {user ? (
-              <Link to="/app" className="btn-primary" style={{ textAlign: 'center' }} onClick={() => setOpen(false)}><span>Dashboard</span></Link>
+              <Link to="/app" className="btn-primary" onClick={() => setOpen(false)}><span>Dashboard</span></Link>
             ) : (
               <>
-                <Link to="/login" className="btn-outline" style={{ textAlign: 'center' }} onClick={() => setOpen(false)}>Login</Link>
-                <Link to="/signup" className="btn-primary" style={{ textAlign: 'center' }} onClick={() => setOpen(false)}><span>Sign Up</span></Link>
+                <Link to="/login" className="btn-outline" onClick={() => setOpen(false)}>Login</Link>
+                <Link to="/signup" className="btn-primary" onClick={() => setOpen(false)}><span>Sign Up</span></Link>
               </>
             )}
           </motion.div>
