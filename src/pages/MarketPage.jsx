@@ -25,7 +25,7 @@ export default function MarketPage() {
           <div className="market-location__icon"><TbMapPin size={18} /></div>
           <div className="market-location__text">
             <span className="market-location__lbl">Your Location v</span>
-            <span className="market-location__val">Eint Khedi, Acharpura</span>
+            <span className="market-location__val">Mahalakshmi Layout, Bengaluru</span>
           </div>
         </div>
         <div className="market-header-actions">

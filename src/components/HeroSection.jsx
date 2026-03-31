@@ -65,7 +65,7 @@ function NewsCarousel() {
   }, [isHovered, expanded, total]);
 
   return (
-    <div 
+    <div
       className="news-carousel"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -191,7 +191,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Cyclos connects waste producers with recyclers — building a
+            Cyclos connects waste producers with recyclers - building a
             sustainable marketplace where your waste becomes someone's
             resource, and vice versa.
           </motion.p>

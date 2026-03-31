@@ -82,7 +82,7 @@ export default function WhatWeDoSection() {
             <span className="gradient-text"> Circular Economy</span>
           </h2>
           <p className="wwd__desc">
-            From AI-powered waste identification to a decentralised marketplace — 
+            From AI - powered waste identification to a decentralised marketplace -
             Cyclos gives you every tool to close the loop on waste.
           </p>
         </motion.div>
