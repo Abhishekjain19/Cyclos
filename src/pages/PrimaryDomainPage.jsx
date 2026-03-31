@@ -8,40 +8,52 @@ import './DomainPage.css';
 /* Primary waste categories — circular image cards */
 const DOMAINS = [
   {
-    id: 'cloth',
-    emoji: '👕',
-    title: 'CLOTH',
-    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=200&q=80',
+    id: 'organic',
+    emoji: '🍎',
+    title: 'ORGANIC',
+    img: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=80', // food/produce
   },
   {
-    id: 'ewaste',
-    emoji: '💻',
-    title: 'E-WASTE',
-    img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=200&q=80',
+    id: 'inorganic',
+    emoji: '🧱',
+    title: 'INORGANIC',
+    img: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=300&q=80', // general dry scrap
   },
   {
     id: 'paper',
     emoji: '📰',
     title: 'PAPER',
-    img: 'https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&q=80',
-  },
-  {
-    id: 'glass',
-    emoji: '🫙',
-    title: 'GLASS',
-    img: 'https://images.unsplash.com/photo-1504707748692-419802cf939d?w=200&q=80',
-  },
-  {
-    id: 'plastic',
-    emoji: '🥤',
-    title: 'PLASTIC',
-    img: 'https://images.unsplash.com/photo-1611284446314-60a58a7dd514?w=200&q=80',
+    img: 'https://images.unsplash.com/photo-1589998059171-988d887df646?w=300&q=80',
   },
   {
     id: 'metal',
     emoji: '🔩',
     title: 'METAL',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80',
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80',
+  },
+  {
+    id: 'plastic',
+    emoji: '🥤',
+    title: 'PLASTIC',
+    img: 'https://images.unsplash.com/photo-1611284446314-60a58a7dd514?w=300&q=80',
+  },
+  {
+    id: 'glass',
+    emoji: '🫙',
+    title: 'GLASS',
+    img: 'https://images.unsplash.com/photo-1504707748692-419802cf939d?w=300&q=80',
+  },
+  {
+    id: 'ewaste',
+    emoji: '💻',
+    title: 'E-WASTE',
+    img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=300&q=80',
+  },
+  {
+    id: 'hazardous',
+    emoji: '⚠️',
+    title: 'HAZARDOUS',
+    img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&q=80', // chemicals/medical
   },
 ];
 

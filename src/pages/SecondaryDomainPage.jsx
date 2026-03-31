@@ -10,27 +10,47 @@ const SECONDARY_DOMAINS = [
   {
     id: 'compost',
     title: 'COMPOST',
-    img: 'https://images.unsplash.com/photo-1591189824523-749ef1e41888?w=200&q=80',
+    img: 'https://images.unsplash.com/photo-1591189824523-749ef1e41888?w=300&q=80',
   },
   {
-    id: 'metals',
-    title: 'METALS',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80',
+    id: 'steel',
+    title: 'STEEL',
+    img: 'https://images.unsplash.com/photo-1533033522057-d88dce248b40?w=300&q=80',
+  },
+  {
+    id: 'copper',
+    title: 'COPPER',
+    img: 'https://images.unsplash.com/photo-1590486803833-ffc6f9d4c80c?w=300&q=80',
+  },
+  {
+    id: 'aluminium',
+    title: 'ALUMINIUM',
+    img: 'https://images.unsplash.com/photo-1584013341516-de1ec359d95f?w=300&q=80',
+  },
+  {
+    id: 'iron',
+    title: 'IRON',
+    img: 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=300&q=80',
+  },
+  {
+    id: 'plastic_res',
+    title: 'RECYCLED PLASTIC',
+    img: 'https://images.unsplash.com/photo-1611284446314-60a58a7dd514?w=300&q=80',
+  },
+  {
+    id: 'paper_pulp',
+    title: 'PAPER PULP',
+    img: 'https://images.unsplash.com/photo-1603484477859-abe6a73f9366?w=300&q=80',
   },
   {
     id: 'textiles',
     title: 'TEXTILES',
-    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=200&q=80',
-  },
-  {
-    id: 'biofuel',
-    title: 'BIO FUEL',
-    img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&q=80',
+    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=300&q=80',
   },
   {
     id: 'rubber',
     title: 'RUBBER',
-    img: 'https://images.unsplash.com/photo-1518534845532-6a7e02fb0ee7?w=200&q=80',
+    img: 'https://images.unsplash.com/photo-1518534845532-6a7e02fb0ee7?w=300&q=80',
   },
 ];
 
