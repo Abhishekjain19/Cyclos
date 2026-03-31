@@ -1,29 +1,50 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { TbArrowLeft, TbMessageCircle, TbBell, TbClipboardList, TbX } from 'react-icons/tb';
+import { TbArrowLeft, TbClipboardList, TbX, TbSearch, TbCheck } from 'react-icons/tb';
 import './DomainPage.css';
 
+/* Secondary (sourcing/material) categories */
 const SECONDARY_DOMAINS = [
-  { id: 'compost', emoji: '🌱', title: 'COMPOST', bg: '#8ecae6' },
-  { id: 'metals', emoji: '🔩', title: 'METALS', bg: '#e0e1dd' },
-  { id: 'textiles', emoji: '🧵', title: 'TEXTILES', bg: '#d4a373' },
-  { id: 'biofuel', emoji: '⚡', title: 'BIO FUEL', bg: '#f8edeb' },
-  { id: 'rubber', emoji: '🛞', title: 'RUBBER', bg: '#4a4e69' },
+  {
+    id: 'compost',
+    title: 'COMPOST',
+    img: 'https://images.unsplash.com/photo-1591189824523-749ef1e41888?w=200&q=80',
+  },
+  {
+    id: 'metals',
+    title: 'METALS',
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80',
+  },
+  {
+    id: 'textiles',
+    title: 'TEXTILES',
+    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=200&q=80',
+  },
+  {
+    id: 'biofuel',
+    title: 'BIO FUEL',
+    img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&q=80',
+  },
+  {
+    id: 'rubber',
+    title: 'RUBBER',
+    img: 'https://images.unsplash.com/photo-1518534845532-6a7e02fb0ee7?w=200&q=80',
+  },
 ];
 
 export default function SecondaryDomainPage() {
   const navigate = useNavigate();
   const { updateProfile } = useAuth();
   const [selected, setSelected] = useState([]);
+  const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const toggleSelect = (id) => {
-    setSelected(prev => 
+  const toggleSelect = (id) =>
+    setSelected(prev =>
       prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
     );
-  };
 
   const handleContinue = async () => {
     if (selected.length === 0) return;
@@ -34,90 +55,124 @@ export default function SecondaryDomainPage() {
     navigate('/app');
   };
 
+  const filtered = SECONDARY_DOMAINS.filter(d =>
+    d.title.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="domain-page">
+      {/* ── Purple header ───────────────── */}
       <div className="domain-page__header">
+        {/* nav row: back + search */}
         <div className="domain-page__nav">
           <button className="domain-page__nav-btn" onClick={() => navigate(-1)}>
-            <TbArrowLeft size={22} />
+            <TbArrowLeft size={20} />
           </button>
-          <div className="domain-page__nav-icons">
-            <TbMessageCircle />
-            <TbBell />
+          <div className="domain-page__search-wrap">
+            <TbSearch size={15} className="domain-page__search-icon" />
+            <input
+              className="domain-page__search"
+              placeholder="Search sourcing category…"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
           </div>
         </div>
-        
-        <motion.div 
+
+        {/* illustration */}
+        <motion.div
           className="domain-page__illustration"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, type: 'spring', bounce: 0.4 }}
+          transition={{ duration: 0.55, type: 'spring', bounce: 0.4 }}
         >
           📦🏭
         </motion.div>
-        
+
+        {/* title pill */}
         <motion.div
           className="domain-page__title-pill"
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 16, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.18 }}
         >
           Select Sourcing Needs
         </motion.div>
       </div>
 
+      {/* ── Body ────────────────────────── */}
       <div className="domain-page__body">
+        {/* sub-header */}
         <div className="domain-page__list-header">
           <div className="domain-page__list-header-left">
+            <TbClipboardList size={17} />
             <span>Market price list</span>
-            <TbClipboardList size={18} />
           </div>
-          <motion.div 
+          <motion.div
             className="domain-page__list-header-right"
             key={selected.length}
-            initial={{ scale: 1.1, color: '#aee1d8' }}
-            animate={{ scale: 1, color: '#ffffff' }}
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
           >
-            {selected.length} Selected <TbX size={16} onClick={() => setSelected([])} />
+            {selected.length} Selected
+            <TbX size={15} onClick={() => setSelected([])} />
           </motion.div>
         </div>
 
-        <motion.div 
+        {/* card grid */}
+        <motion.div
           className="domain-grid"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.25 }}
         >
-          {SECONDARY_DOMAINS.map((d, i) => {
-            const isSelected = selected.includes(d.id);
-            return (
-              <motion.div
-                key={d.id}
-                className={`domain-card ${isSelected ? 'domain-card--selected' : ''}`}
-                style={{ backgroundColor: d.bg }}
-                onClick={() => toggleSelect(d.id)}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 + (i * 0.05) }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {!isSelected && <span className="domain-card__plus">+</span>}
-                <span className="domain-card__emoji">{d.emoji}</span>
-                <span className="domain-card__title">{d.title}</span>
-              </motion.div>
-            );
-          })}
+          <AnimatePresence mode="popLayout">
+            {filtered.length === 0 ? (
+              <motion.p key="empty" className="domain-empty"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                No categories match "{search}"
+              </motion.p>
+            ) : (
+              filtered.map((d, i) => {
+                const isSel = selected.includes(d.id);
+                return (
+                  <motion.div
+                    key={d.id}
+                    className={`domain-card${isSel ? ' domain-card--selected' : ''}`}
+                    style={{
+                      backgroundImage: `url(${d.img})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    onClick={() => toggleSelect(d.id)}
+                    initial={{ opacity: 0, scale: 0.75 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.75 }}
+                    transition={{ delay: i * 0.05 }}
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.94 }}
+                  >
+                    {isSel
+                      ? <span className="domain-card__check"><TbCheck size={12} /></span>
+                      : <span className="domain-card__plus">+</span>
+                    }
+                    <span className="domain-card__title">{d.title}</span>
+                  </motion.div>
+                );
+              })
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
 
+      {/* ── Fixed footer ────────────────── */}
       <div className="domain-page__footer">
-        <button 
+        <button
           className="domain-page__cta"
           onClick={handleContinue}
           disabled={selected.length === 0 || loading}
         >
-          {loading ? 'PROCESSING...' : 'GO TO DASHBOARD'}
+          {loading ? 'PROCESSING…' : 'GO TO DASHBOARD'}
         </button>
       </div>
     </div>

@@ -2,7 +2,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { TbEdit, TbHome, TbScan, TbBuildingStore, TbRobot, TbPlant, TbLeaf, TbTrophy, TbBell } from 'react-icons/tb';
+import { TbEdit, TbBell, TbLeaf, TbBolt, TbRecycle, TbShirt, TbPlant2 } from 'react-icons/tb';
+
+/* Secondary domain materials — icon + colour mapping */
+const SECONDARY_MATERIALS = [
+  { id: 'compost',  label: 'Compost',  Icon: TbPlant2, bg: '#dcfce7' },
+  { id: 'metals',   label: 'Metals',   Icon: TbRecycle, bg: '#e0f2fe' },
+  { id: 'textiles', label: 'Textiles', Icon: TbShirt,   bg: '#fef08a' },
+  { id: 'biofuel',  label: 'Bio Fuel', Icon: TbBolt,    bg: '#ffedd5' },
+  { id: 'rubber',   label: 'Rubber',   Icon: TbLeaf,    bg: '#f3e8ff' },
+];
 import MapSection from '../components/MapSection';
 import LocalFactsCarousel from '../components/LocalFactsCarousel';
 import './MainPage.css';
@@ -89,18 +98,12 @@ export default function MainPage() {
           </div>
           
           <div className="dash-materials-scroll">
-            <div className="material-card material-bg-1">
-               <TbPlant size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
-               <div className="material-card__label">Plastic</div>
-            </div>
-            <div className="material-card material-bg-2">
-               <TbLeaf size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
-               <div className="material-card__label">Glass</div>
-            </div>
-            <div className="material-card material-bg-3">
-               <TbTrophy size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
-               <div className="material-card__label">Paper</div>
-            </div>
+            {SECONDARY_MATERIALS.map(({ id, label, Icon, bg }) => (
+              <div key={id} className="material-card" style={{ background: bg }}>
+                <Icon size={32} color="#110e1b" style={{ position: 'absolute', top: 16, opacity: 0.2 }} />
+                <div className="material-card__label">{label}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
 

@@ -1,195 +1,377 @@
-.market-page {
+/* ══════════════════════════════════════════════════════════
+   MarketPage — dark navy #110e1b + purple #7543ff theme
+   Matches MainPage.jsx colour palette exactly
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Page shell ──────────────────────────────────────────── */
+.mkt-page {
   min-height: 100vh;
-  background: #151030; /* Dark navy from Image 3 */
-  position: relative;
-  overflow-x: hidden;
+  background: #110e1b;
   display: flex;
   flex-direction: column;
+  padding-bottom: 100px;
+  overflow-x: hidden;
 }
 
-.market-header {
-  padding: 48px 24px 24px;
+/* ── Header ──────────────────────────────────────────────── */
+.mkt-header {
+  background: #7543ff;
+  padding: 52px 20px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  color: white;
+  justify-content: space-between;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-.market-location {
+.mkt-header__title {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.mkt-back-btn,
+.mkt-cart-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.12);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mkt-back-btn:hover, .mkt-cart-btn:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+/* ── Search bar ──────────────────────────────────────────── */
+.mkt-search-wrap {
+  background: #1a1625;
+  margin: 16px 20px 0;
+  border-radius: 14px;
+  border: 1.5px solid rgba(117, 67, 255, 0.3);
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 0 8px 0 16px;
+  transition: border-color 0.2s;
+}
+.mkt-search-wrap:focus-within {
+  border-color: #7543ff;
+  box-shadow: 0 0 0 3px rgba(117, 67, 255, 0.15);
 }
 
-.market-location__icon {
-  width: 32px; height: 32px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+.mkt-search-icon {
+  color: rgba(255,255,255,0.35);
+  flex-shrink: 0;
 }
 
-.market-location__text {
-  display: flex;
-  flex-direction: column;
-}
-
-.market-location__lbl {
-  font-size: 11px; color: rgba(255,255,255,0.5);
-}
-
-.market-location__val {
-  font-size: 14px; font-weight: 700;
-}
-
-.market-header-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.market-header-btn {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  color: white;
-  background: transparent;
-}
-
-.market-body {
-  background: white;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
+.mkt-search {
   flex: 1;
-  padding: 32px 24px 120px;
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 14px;
+  font-family: var(--font-main);
+  padding: 14px 0;
 }
+.mkt-search::placeholder { color: rgba(255,255,255,0.3); }
 
-.market-title {
-  color: #151030;
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 24px;
+.mkt-search-btn {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: #7543ff;
+  border: none;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
 }
+.mkt-search-btn:hover { background: #6030e0; }
 
-.market-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+/* ── Category chips ──────────────────────────────────────── */
+.mkt-cats {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 18px 20px 4px;
+  scrollbar-width: none;
 }
+.mkt-cats::-webkit-scrollbar { display: none; }
 
-.market-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  padding: 12px;
+.mkt-cat {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  background: #1a1625;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 10px 14px;
   cursor: pointer;
-  border: 1px solid #f1f5f9;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  min-width: 62px;
+}
+.mkt-cat:hover {
+  border-color: rgba(117, 67, 255, 0.45);
+  background: #22193a;
+}
+.mkt-cat--active {
+  background: #7543ff;
+  border-color: #7543ff;
+  box-shadow: 0 4px 14px rgba(117, 67, 255, 0.4);
 }
 
-.market-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+.mkt-cat__icon { font-size: 22px; line-height: 1; }
+.mkt-cat__label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+  font-family: var(--font-main);
+}
+.mkt-cat--active .mkt-cat__label { color: white; }
+
+/* ── Product list ────────────────────────────────────────── */
+.mkt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 16px 20px 0;
 }
 
-.market-card__img {
-  width: 100%;
-  aspect-ratio: 1;
+.mkt-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #1a1625;
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.06);
+  transition: all 0.2s;
+  position: relative;
+}
+.mkt-item:hover {
+  border-color: rgba(117, 67, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.mkt-item__img-wrap {
+  width: 72px; height: 72px;
   border-radius: 12px;
-  object-fit: contain;
-  background: #f8fafc;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #0e0b18;
+}
+.mkt-item__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
 
-.market-card__label {
-  background: #151030;
-  color: white;
-  text-align: center;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
+.mkt-item__body {
+  flex: 1;
+  min-width: 0;
+}
+.mkt-item__name {
+  font-size: 14px;
   font-weight: 700;
+  color: white;
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+.mkt-item__price {
+  font-size: 15px;
+  font-weight: 800;
+  color: #a78bfa;
+  margin: 0;
+  font-family: var(--font-display);
 }
 
-/* Detail Modal Overlay */
-.market-detail {
+.mkt-item__wish {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  padding: 6px;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.mkt-item__wish:hover, .mkt-item__wish--active { color: #f87171; }
+
+.mkt-item__arrow {
+  color: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+.mkt-empty {
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  padding: 60px 0;
+  font-size: 15px;
+}
+
+/* ── Detail sheet (full-screen slide-up) ─────────────────── */
+.mkt-detail {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: white;
-  z-index: 200;
+  inset: 0;
+  background: #110e1b;
+  z-index: 300;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
 }
 
-.market-detail__hero {
-  height: 350px;
-  background: #f8fafc;
+.mkt-detail__hero {
+  height: 300px;
+  background: #1a1625;
   position: relative;
+  flex-shrink: 0;
 }
-
-.market-detail__img {
-  width: 100%; height: 100%; object-fit: contain; padding: 40px;
+.mkt-detail__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
 }
-
-.market-detail__nav {
-  position: absolute; top: 40px; left: 24px; right: 24px;
-  display: flex; justify-content: space-between; align-items: center;
+.mkt-detail__nav {
+  position: absolute;
+  top: 44px; left: 20px; right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
 }
-
-.market-detail__nav-btn {
+.mkt-detail__nav-btn {
   width: 40px; height: 40px;
   border-radius: 50%;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: rgba(17,14,27,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
   display: flex; align-items: center; justify-content: center;
-  border: none;
-  color: #151030;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
+.mkt-detail__nav-btn:hover { background: rgba(117,67,255,0.6); }
+.mkt-detail__nav-btn--wish { color: #f87171; }
 
-.market-detail__info {
-  padding: 24px;
+.mkt-detail__info {
+  padding: 24px 20px 140px;
   flex: 1;
-  padding-bottom: 120px;
+}
+.mkt-detail__title {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  font-family: var(--font-display);
+  margin: 0 0 6px;
+}
+.mkt-detail__price {
+  font-size: 22px;
+  font-weight: 800;
+  color: #a78bfa;
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+}
+.mkt-detail__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+}
+.mkt-detail__rating {
+  display: flex; align-items: center; gap: 4px;
+  color: #facc15;
+}
+.mkt-detail__desc-title {
+  font-size: 15px; font-weight: 700;
+  color: white; margin-bottom: 8px;
+}
+.mkt-detail__desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  margin-bottom: 28px;
 }
 
-.market-detail__title {
-  font-size: 24px; font-weight: 800; color: #151030; margin-bottom: 8px;
+/* also-like mini-list */
+.mkt-also-list {
+  display: flex; gap: 12px; margin-top: 12px;
+}
+.mkt-also-item {
+  flex: 1;
+  background: #1a1625;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  transition: border-color 0.2s;
+}
+.mkt-also-item:hover { border-color: rgba(117,67,255,0.4); }
+.mkt-also-item__img {
+  width: 100%; aspect-ratio: 1;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
-.market-detail__price {
-  font-size: 22px; font-weight: 800; color: #84cc16; margin-bottom: 16px;
+/* ── Detail footer ───────────────────────────────────────── */
+.mkt-detail__footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, #110e1b 80%, transparent);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 310;
 }
-
-.market-detail__meta {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 13px; color: #64748b; margin-bottom: 24px;
-}
-.market-detail__rating { display: flex; align-items: center; gap: 4px; color: #eab308; }
-
-.market-detail__desc-title { font-size: 16px; font-weight: 700; color: #151030; margin-bottom: 8px; }
-.market-detail__desc { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 32px; }
-
-.market-detail__footer {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  padding: 24px;
-  background: white;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
-}
-
-.market-detail__qty {
+.mkt-detail__qty {
   display: flex; align-items: center; gap: 16px;
-  background: #f1f5f9; padding: 12px 16px; border-radius: 50px;
+  background: #1a1625;
+  border: 1.5px solid rgba(117,67,255,0.3);
+  padding: 10px 18px;
+  border-radius: 50px;
+  flex-shrink: 0;
 }
-.market-detail__qty-btn { background: transparent; border: none; font-size: 20px; cursor: pointer; color: #151030; }
-.market-detail__qty-val { font-weight: 700; font-size: 16px; color: #151030; }
-
-.market-detail__add {
-  flex: 1; background: #151030; color: white; border: none;
-  padding: 16px; border-radius: 50px; font-size: 16px; font-weight: 700;
+.mkt-detail__qty-btn {
+  background: none; border: none;
+  font-size: 22px; color: white;
+  cursor: pointer; line-height: 1;
+}
+.mkt-detail__qty-val {
+  font-weight: 700; font-size: 15px; color: white; min-width: 36px; text-align: center;
+}
+.mkt-detail__add {
+  flex: 1;
+  background: #7543ff;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
   display: flex; align-items: center; justify-content: center; gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.mkt-detail__add:hover {
+  background: #6030e0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(117,67,255,0.4);
 }
