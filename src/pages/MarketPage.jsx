@@ -3,77 +3,63 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TbChevronLeft, TbShoppingCart, TbSearch,
-  TbHeart, TbStarFilled, TbChevronRight
+  TbHeart, TbStarFilled, TbChevronRight, TbUpload, TbPhoto, TbCheck
 } from 'react-icons/tb';
 import './MarketPage.css';
 
-/* ── Category tabs (secondary domains + All) ─────────── */
+/* ── Category tabs ─────────── */
 const CATEGORIES = [
-  { id: 'all',      emoji: '🌿', label: 'All'      },
-  { id: 'compost',  emoji: '🌱', label: 'Compost'  },
-  { id: 'metals',   emoji: '🔩', label: 'Metals'   },
-  { id: 'textiles', emoji: '🧵', label: 'Textiles' },
-  { id: 'biofuel',  emoji: '⚡', label: 'Bio Fuel' },
-  { id: 'rubber',   emoji: '🛞', label: 'Rubber'   },
+  { id: 'all',       emoji: '🌊', label: 'All' },
+  { id: 'ornament',  emoji: '🐚', label: 'Ornaments' },
+  { id: 'obp',       emoji: '♻️', label: 'OBP Plastic' },
+  { id: 'fishing',   emoji: '🕸️', label: 'Nets' },
+  { id: 'metals',    emoji: '🔩', label: 'Sea Metals' },
+  { id: 'glass',     emoji: '🏺', label: 'Sea Glass' },
 ];
 
 /* ── Product catalogue ───────────────────────────────── */
 const PRODUCTS = [
   {
-    id: 1, category: 'compost',
-    name: 'Organic Compost Mix',
-    desc: 'Premium kitchen-waste compost blend, rich in nitrogen and micronutrients. Ideal for home gardens and urban farming. Produced by the local eco-hub.',
-    price: '₹80/kg',
-    img: 'https://images.unsplash.com/photo-1591189824523-749ef1e41888?w=400&q=80',
+    id: 1, category: 'ornament',
+    name: 'Ocean-Glass Pendant',
+    desc: 'Hand-crafted pendant made from sea glass recovered near coastal reefs. Polished and wrapped in recycled silver wire.',
+    price: '₹450',
+    img: 'https://images.unsplash.com/photo-1611080277317-0b1e4da2880c?w=400&q=80',
   },
   {
-    id: 2, category: 'metals',
-    name: 'Reclaimed Copper Wire',
-    desc: 'Stripped copper wire recovered from certified e-waste facilities. 99.5 % purity, ready for remanufacturing or resale.',
-    price: '₹350/kg',
+    id: 2, category: 'obp',
+    name: 'OBP Extruded Filament',
+    desc: '3D printing filament (1.75mm) made entirely from Ocean Bound Plastic recovered off the coast. High durability for eco-printing.',
+    price: '₹850/kg',
+    img: 'https://images.unsplash.com/photo-1611284446314-60a58a7dd514?w=400&q=80',
+  },
+  {
+    id: 3, category: 'fishing',
+    name: 'Recycled Ghost Net Bag',
+    desc: 'Durable tote bag woven from abandoned fishing nets (ghost nets) salvaged by deep-sea divers. Water-resistant and extremely tough.',
+    price: '₹600',
+    img: 'https://images.unsplash.com/photo-1597816045474-0402b8d0e74f?w=400&q=80',
+  },
+  {
+    id: 4, category: 'metals',
+    name: 'Recovered Hull Scrap',
+    desc: 'Sorted steel from decommissioned coastal vessels. Cleaned and ready for industrial smelting. 99% iron content.',
+    price: '₹45/kg',
     img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
   },
   {
-    id: 3, category: 'textiles',
-    name: 'Upcycled Denim Fabric',
-    desc: 'Salvaged denim from manufacturing offcuts. Washed, sorted, and baled in 10 kg lots. Perfect for patchwork and artisan fashion.',
+    id: 5, category: 'glass',
+    name: 'Crushed Sea Glass Aggregate',
+    desc: 'Tumbled sea glass mixed for use in decorative terrazzo flooring and coastal landscaping projects.',
     price: '₹120/kg',
-    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&q=80',
+    img: 'https://images.unsplash.com/photo-1504707748692-419802cf939d?w=400&q=80',
   },
   {
-    id: 4, category: 'biofuel',
-    name: 'Waste Cooking Oil',
-    desc: 'Filtered used cooking oil collected from restaurants. Ready for biodiesel conversion. Available in 20-litre containers.',
-    price: '₹45/L',
-    img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80',
-  },
-  {
-    id: 5, category: 'rubber',
-    name: 'Ground Tyre Crumb',
-    desc: 'Fine rubber crumb derived from end-of-life tyres. Used in sports surfaces, playground flooring, and asphalt modification.',
-    price: '₹30/kg',
-    img: 'https://images.unsplash.com/photo-1518534845532-6a7e02fb0ee7?w=400&q=80',
-  },
-  {
-    id: 6, category: 'metals',
-    name: 'Aluminium Scrap Sheets',
-    desc: 'Clean aluminium offcuts from fabrication units. Sorted by alloy grade. Minimum order 5 kg.',
-    price: '₹95/kg',
-    img: 'https://images.unsplash.com/photo-1605600659873-d808a1d14b18?w=400&q=80',
-  },
-  {
-    id: 7, category: 'compost',
-    name: 'Vermicompost Pellets',
-    desc: 'Slow-release vermicompost in easy-to-handle pellet form. Enriches soil structure and boosts crop yield by up to 30 %.',
-    price: '₹110/kg',
-    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80',
-  },
-  {
-    id: 8, category: 'textiles',
-    name: 'Cotton Rag Bundles',
-    desc: 'Sorted cotton rags from garment factories — dust-free, absorbent, and ready for industrial wiping or paper pulp use.',
-    price: '₹55/kg',
-    img: 'https://images.unsplash.com/photo-1620050854443-47e9a8f4c280?w=400&q=80',
+    id: 6, category: 'ornament',
+    name: 'Driftwood Sculpture',
+    desc: 'Artisanal tabletop sculpture shaped entirely from naturally smoothed ocean driftwood. Fully treated and sealed.',
+    price: '₹1250',
+    img: 'https://images.unsplash.com/photo-1615800098779-1be32e60cca3?w=400&q=80',
   },
 ];
 
@@ -84,6 +70,11 @@ export default function MarketPage() {
   const [selected, setSelected] = useState(null);
   const [qty, setQty] = useState(1);
   const [wishlist, setWishlist] = useState([]);
+
+  // Upload modal state
+  const [showUpload, setShowUpload] = useState(false);
+  const [uploadData, setUploadData] = useState({ title: '', price: '', desc: '' });
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const filtered = PRODUCTS.filter(p => {
     const matchCat = activeCategory === 'all' || p.category === activeCategory;
@@ -96,6 +87,17 @@ export default function MarketPage() {
 
   const openProduct = (p) => { setSelected(p); setQty(1); };
 
+  const handleUploadSubmit = (e) => {
+    e.preventDefault();
+    if (!uploadData.title) return;
+    setUploadSuccess(true);
+    setTimeout(() => {
+      setUploadSuccess(false);
+      setShowUpload(false);
+      setUploadData({ title: '', price: '', desc: '' });
+    }, 2000);
+  };
+
   return (
     <div className="mkt-page">
       {/* ── Header ─────────────────────────────────────────── */}
@@ -103,10 +105,15 @@ export default function MarketPage() {
         <button className="mkt-back-btn" onClick={() => navigate(-1)}>
           <TbChevronLeft size={22} />
         </button>
-        <h2 className="mkt-header__title">Our Products</h2>
-        <button className="mkt-cart-btn">
-          <TbShoppingCart size={20} />
-        </button>
+        <h2 className="mkt-header__title">Ocean Market</h2>
+        <div className="mkt-header__actions">
+          <button className="mkt-cart-btn" onClick={() => setShowUpload(true)}>
+            <TbUpload size={18} />
+          </button>
+          <button className="mkt-cart-btn">
+            <TbShoppingCart size={20} />
+          </button>
+        </div>
       </div>
 
       {/* ── Search bar ─────────────────────────────────────── */}
@@ -114,7 +121,7 @@ export default function MarketPage() {
         <TbSearch size={18} className="mkt-search-icon" />
         <input
           className="mkt-search"
-          placeholder="Search Products"
+          placeholder="Search Marine Goods"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
@@ -146,7 +153,7 @@ export default function MarketPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              No products found 🔍
+              No items discovered in the deep 🌊
             </motion.div>
           ) : (
             filtered.map((prod, i) => (
@@ -179,6 +186,58 @@ export default function MarketPage() {
         </AnimatePresence>
       </div>
 
+      {/* ── Upload Sheet ───────────────────────────────────── */}
+      <AnimatePresence>
+        {showUpload && (
+          <motion.div
+            className="mkt-upload"
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+          >
+            <div className="mkt-upload__header">
+              <button className="mkt-upload__close" onClick={() => setShowUpload(false)}>
+                <TbChevronLeft size={22} /> Back
+              </button>
+              <h3 className="mkt-upload__title">Sell Item</h3>
+              <div style={{width: '60px'}}></div>
+            </div>
+
+            {uploadSuccess ? (
+              <div className="mkt-upload__success">
+                <div className="mkt-upload__success-icon"><TbCheck size={40} /></div>
+                <h3>Listed Successfully</h3>
+                <p>Your item is now live on the Ocean Market.</p>
+              </div>
+            ) : (
+              <form className="mkt-upload__form" onSubmit={handleUploadSubmit}>
+                <div className="mkt-upload__photo-btn">
+                  <TbPhoto size={24} /> Add Product Photo
+                </div>
+                
+                <div className="mkt-upload__field">
+                  <label>Product Title</label>
+                  <input required type="text" placeholder="e.g. Recycled Net Bag" value={uploadData.title} onChange={e => setUploadData({...uploadData, title: e.target.value})} />
+                </div>
+
+                <div className="mkt-upload__field">
+                  <label>Price (₹)</label>
+                  <input required type="text" placeholder="e.g. 500/kg" value={uploadData.price} onChange={e => setUploadData({...uploadData, price: e.target.value})} />
+                </div>
+
+                <div className="mkt-upload__field">
+                  <label>Description</label>
+                  <textarea rows={4} placeholder="Tell the buyer about this recycled product..." value={uploadData.desc} onChange={e => setUploadData({...uploadData, desc: e.target.value})} />
+                </div>
+
+                <button type="submit" className="mkt-upload__submit">Post to Market</button>
+              </form>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ── Detail sheet ───────────────────────────────────── */}
       <AnimatePresence>
         {selected && (
@@ -189,7 +248,6 @@ export default function MarketPage() {
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 220 }}
           >
-            {/* hero image */}
             <div className="mkt-detail__hero">
               <nav className="mkt-detail__nav">
                 <button className="mkt-detail__nav-btn" onClick={() => setSelected(null)}>
@@ -205,20 +263,19 @@ export default function MarketPage() {
               <img src={selected.img} alt={selected.name} className="mkt-detail__img" />
             </div>
 
-            {/* info */}
             <div className="mkt-detail__info">
               <h1 className="mkt-detail__title">{selected.name}</h1>
               <p className="mkt-detail__price">{selected.price}</p>
 
               <div className="mkt-detail__meta">
-                <span>🚚 Free Delivery</span>
-                <span className="mkt-detail__rating"><TbStarFilled size={13} /> 4.5</span>
+                <span>🚚 Coastal Delivery</span>
+                <span className="mkt-detail__rating"><TbStarFilled size={13} /> 4.8</span>
               </div>
 
               <p className="mkt-detail__desc-title">Description</p>
               <p className="mkt-detail__desc">{selected.desc}</p>
 
-              <p className="mkt-detail__desc-title">You may also like</p>
+              <p className="mkt-detail__desc-title">Discover similar</p>
               <div className="mkt-also-list">
                 {PRODUCTS.filter(p => p.id !== selected.id && p.category === selected.category).slice(0, 2).map(p => (
                   <div key={p.id} className="mkt-also-item" onClick={() => openProduct(p)}>
@@ -229,15 +286,14 @@ export default function MarketPage() {
               </div>
             </div>
 
-            {/* footer */}
             <div className="mkt-detail__footer">
               <div className="mkt-detail__qty">
                 <button className="mkt-detail__qty-btn" onClick={() => setQty(Math.max(1, qty - 1))}>−</button>
-                <span className="mkt-detail__qty-val">{qty} kg</span>
+                <span className="mkt-detail__qty-val">{qty}</span>
                 <button className="mkt-detail__qty-btn" onClick={() => setQty(qty + 1)}>+</button>
               </div>
               <button className="mkt-detail__add">
-                <TbShoppingCart size={18} /> Add to Cart
+                <TbShoppingCart size={18} /> Buy Now
               </button>
             </div>
           </motion.div>

@@ -1,45 +1,41 @@
 .main-page {
   min-height: 100vh;
-  background: #110e1b;
-  /* Dark background matching the phone edges */
+  background: #01111d; /* Very deep ocean blue/black */
   padding-bottom: 100px;
 }
 
-/* Purple Header Background */
+/* Deep Ocean Header Background */
 .dash-header__block {
-  background: #9333ea;
-  /* More vibrant purple */
+  background: linear-gradient(135deg, #02223c, #0369a1); /* Deep navy to ocean blue */
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   padding: 60px 20px 48px;
-  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+  box-shadow: 0 10px 30px rgba(3, 105, 161, 0.25);
 }
 
 /* User Profile Pill */
 .dash-profile-pill {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 100px;
-  /* Capsule shape */
   padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 40px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .dash-profile-avatar {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #110e1b;
+  background: #0284c7; /* Brand ocean center */
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 20px;
-  border: 2px solid #f3f4f6;
   flex-shrink: 0;
 }
 
@@ -50,7 +46,7 @@
 .dash-profile-name {
   font-size: 16px;
   font-weight: 800;
-  color: #110e1b;
+  color: #0c4a6e;
   margin: 0;
   line-height: 1.1;
   letter-spacing: -0.01em;
@@ -58,9 +54,9 @@
 
 .dash-profile-sub {
   font-size: 12px;
-  color: #64748b;
+  color: #0284c7;
   margin: 2px 0 0 0;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .dash-profile-actions {
@@ -72,18 +68,18 @@
   width: 36px;
   height: 36px;
   border: none;
-  background: #f1f5f9;
+  background: #e0f2fe;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1f2937;
+  color: #0369a1;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .dash-profile-edit:hover {
-  background: #e2e8f0;
+  background: #bae6fd;
   transform: scale(1.05);
 }
 
@@ -95,8 +91,9 @@
 }
 
 .dash-stat-minicard {
-  background: #110e1b;
-  /* Dark backdrop */
+  background: rgba(1, 22, 39, 0.6); /* Translucent deep sea */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(2, 132, 199, 0.3);
   flex: 1;
   border-radius: 28px;
   padding: 24px 12px;
@@ -105,12 +102,12 @@
   align-items: center;
   gap: 10px;
   color: white;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .dash-stat-icon {
   margin-bottom: 4px;
-  opacity: 0.9;
+  color: #38bdf8; /* Bright cyan to pop against dark card */
 }
 
 .dash-stat-val {
@@ -121,7 +118,7 @@
 
 .dash-stat-label {
   font-size: 12px;
-  color: #94a3b8;
+  color: #bae6fd;
   font-weight: 500;
 }
 
@@ -139,25 +136,28 @@
 
 .dash-section-title {
   font-size: 18px;
-  font-weight: 700;
-  color: white;
+  font-weight: 800;
+  color: #e0f2fe;
   margin: 0;
 }
 
 .dash-section-viewall {
   font-size: 12px;
-  color: #a78bfa;
+  color: #38bdf8;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .dash-map-card {
-  background: white;
+  background: #021a2f; /* Deep ocean card */
+  border: 1px solid rgba(2, 132, 199, 0.2);
   border-radius: 20px;
   padding: 16px;
   min-height: 180px;
   position: relative;
   overflow: hidden;
   margin-bottom: 32px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .dash-materials-scroll {
@@ -182,31 +182,18 @@
   padding: 16px;
   position: relative;
   scroll-snap-align: start;
+  overflow: hidden;
+  /* backgrounds are set inline */
 }
 
 .material-card__label {
-  background: white;
-  color: #110e1b;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0c4a6e;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   padding: 6px 12px;
   border-radius: 50px;
   text-align: center;
   width: 100%;
-}
-
-.material-bg-1 {
-  background: #e0f2fe;
-}
-
-.material-bg-2 {
-  background: #fef08a;
-}
-
-.material-bg-3 {
-  background: #ffedd5;
-}
-
-.material-bg-4 {
-  background: #dcfce7;
+  backdrop-filter: blur(5px);
 }

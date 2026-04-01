@@ -8,6 +8,12 @@ export default function ScanPage() {
   const navigate = useNavigate();
   const [scanned, setScanned] = useState(false);
 
+  // Simulated AI result logic
+  const mockType = "Plastic - Grade A";
+  const mockEstimation = "2.3 kg";
+  const mockCost = "₹12.50";
+  const mockProduct = "Eco Bricks, 3D Filament";
+
   useEffect(() => {
     // Simulate AI scanner processing
     const timer = setTimeout(() => {
@@ -15,6 +21,10 @@ export default function ScanPage() {
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
+
+  const isPlastic = mockType.toLowerCase().includes('plastic');
+  const estimationLabel = isPlastic ? "OBP ESTIMATION" : "CO2 ESTIMATION";
+
 
   return (
     <div className="scan-page">
@@ -60,29 +70,32 @@ export default function ScanPage() {
         transition={{ delay: 0.1, type: "spring", damping: 20 }}
       >
         <div className="scan-result-title">
-          {scanned ? "Plastic material" : "Analyzing..."}
+          {scanned ? mockType : "Analyzing..."}
         </div>
         
         <div className="scan-result-stats">
           <div className="scan-result-stat">
             <span className="scan-result-stat__lbl">Waste Type</span>
-            <span className="scan-result-stat__val">{scanned ? 'Plastic - Grade A' : '-'}</span>
+            <span className="scan-result-stat__val">{scanned ? mockType : '-'}</span>
           </div>
           <div className="scan-result-stat">
-            <span className="scan-result-stat__lbl">CO2 Estimation</span>
-            <span className="scan-result-stat__val">{scanned ? '2.3 kg' : '-'}</span>
+            <span className="scan-result-stat__lbl">{estimationLabel}</span>
+            <span className="scan-result-stat__val">{scanned ? mockEstimation : '-'}</span>
           </div>
           <div className="scan-result-stat">
             <span className="scan-result-stat__lbl">Recycling Cost</span>
-            <span className="scan-result-stat__val">{scanned ? '₹12.50' : '-'}</span>
+            <span className="scan-result-stat__val">{scanned ? mockCost : '-'}</span>
           </div>
           <div className="scan-result-stat">
-            <span className="scan-result-stat__lbl">Domains</span>
-            <span className="scan-result-stat__val">{scanned ? 'B2B, Home' : '-'}</span>
+            <span className="scan-result-stat__lbl">Recycled Product Suggestion</span>
+            <span className="scan-result-stat__val">{scanned ? mockProduct : '-'}</span>
           </div>
         </div>
 
-        <button className="scan-result-btn">
+        <button 
+           className="scan-result-btn"
+           onClick={() => scanned ? navigate('/bins') : null}
+        >
           {scanned ? 'Add to bin station' : 'Scanning...'}
         </button>
       </motion.div>

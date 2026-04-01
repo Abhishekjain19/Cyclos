@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { TbEdit, TbBell, TbLeaf, TbBolt, TbRecycle, TbShirt, TbPlant2, TbCloud } from 'react-icons/tb';
+import { TbEdit, TbBell, TbLeaf, TbRipple, TbRecycle, TbBottle, TbAnchor, TbDroplet, TbMessageReport } from 'react-icons/tb';
 
-/* Secondary domain materials — icon + colour mapping */
+/* Secondary domain materials — icon + color mapping */
 const SECONDARY_MATERIALS = [
-  { id: 'compost', label: 'Compost', Icon: TbPlant2, bg: '#dcfce7' },
-  { id: 'metals', label: 'Metals', Icon: TbRecycle, bg: '#e0f2fe' },
-  { id: 'textiles', label: 'Textiles', Icon: TbShirt, bg: '#fef08a' },
-  { id: 'biofuel', label: 'Bio Fuel', Icon: TbBolt, bg: '#ffedd5' },
-  { id: 'rubber', label: 'Rubber', Icon: TbLeaf, bg: '#f3e8ff' },
+  { id: 'obp', label: 'OBP', Icon: TbBottle, bg: '#0284c7' }, // Ocean Bound Plastic
+  { id: 'metals', label: 'Metals', Icon: TbRecycle, bg: '#0369a1' },
+  { id: 'shells', label: 'Sea Shells', Icon: TbDroplet, bg: '#0c4a6e' },
+  { id: 'glass', label: 'Glass', Icon: TbLeaf, bg: '#38bdf8' },
+  { id: 'nets', label: 'Ghost Nets', Icon: TbAnchor, bg: '#0ea5e9' },
 ];
 import MapSection from '../components/MapSection';
 import LocalFactsCarousel from '../components/LocalFactsCarousel';
@@ -43,6 +43,9 @@ export default function MainPage() {
             <p className="dash-profile-sub">{locationText}</p>
           </div>
           <div className="dash-profile-actions" style={{ display: 'flex', gap: '8px' }}>
+            <button className="dash-profile-edit" aria-label="Complaints" onClick={() => navigate('/complaint')}>
+              <TbMessageReport size={16} />
+            </button>
             <button className="dash-profile-edit" aria-label="Notifications" onClick={() => navigate('/notifications')}>
               <TbBell size={16} />
             </button>
@@ -60,9 +63,9 @@ export default function MainPage() {
             <span className="dash-stat-label">Recycle</span>
           </div>
           <div className="dash-stat-minicard">
-            <TbCloud size={24} className="dash-stat-icon" />
-            <span className="dash-stat-val">5.2 g</span>
-            <span className="dash-stat-label">Carbon</span>
+            <TbRipple size={24} className="dash-stat-icon" />
+            <span className="dash-stat-val">8.4 kg</span>
+            <span className="dash-stat-label">OBP</span>
           </div>
           <div className="dash-stat-minicard">
             <TbLeaf size={24} className="dash-stat-icon" />

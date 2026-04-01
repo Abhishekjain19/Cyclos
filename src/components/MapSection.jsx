@@ -14,16 +14,13 @@ function generatePoints(count = 20) {
     lat: BASE_LAT + (Math.random() - 0.5) * 0.25,
     lng: BASE_LNG + (Math.random() - 0.5) * 0.25,
     title: [
-      'Green Plastics Co.', 'EcoMetal Works', 'BioCompost Hub',
-      'RecycleKart', 'GreenFab Textiles', 'CleanPaper Mills',
-      'E-Revive Lab', 'AgroWaste Solutions', 'CircleGlass',
-      'RubberCycle India', 'FoodLoop Pvt', 'TerraFibre',
-      'WasteWise Mumbai', 'GreenChain Co.', 'UrbanLoop',
-      'CirQle Metals', 'EcoNest Materials', 'RecyclePro Hub',
-      'ZeroWaste HQ', 'CleanCycle India'
-    ][i % 20],
+      'Coastal Zone A', 'Bay Cleanup Area', 'Deep Reef',
+      'Harbor Port', 'Estuary Outlet', 'Marine Reserve',
+      'Industrial Coast', 'Public Beach', 'Island Cove',
+      'Fishing Community', 'Coral Atoll', 'Open Water Zone'
+    ][i % 12],
     kg: Math.floor(Math.random() * 500 + 50),
-    type: ['Plastic', 'Metal', 'Organic', 'Paper', 'Textile', 'Glass', 'E-Waste'][Math.floor(Math.random() * 7)],
+    type: ['Populated', 'Polluted', 'Less Explored'][Math.floor(Math.random() * 3)],
     distance: (Math.random() * 15 + 0.5).toFixed(1),
   }));
 }
@@ -31,13 +28,9 @@ function generatePoints(count = 20) {
 const POINTS = generatePoints(20);
 
 const COLOR_MAP = {
-  Plastic: '#4ade80',
-  Metal: '#60a5fa',
-  Organic: '#a3e635',
-  Paper: '#fbbf24',
-  Textile: '#c084fc',
-  Glass: '#22d3ee',
-  'E-Waste': '#f87171',
+  Populated: '#38bdf8', /* Cyan */
+  Polluted: '#ef4444', /* Red */
+  'Less Explored': '#10b981', /* Teal/Green */
 };
 
 function DarkMap() {
@@ -106,7 +99,7 @@ export default function MapSection({ domain }) {
       </div>
 
       <p className="map-section__note">
-        🔒 Exact locations are privacy-masked · Showing {points.length} listings near you
+        📍 Nearest ocean/sea is 42.5 kms far
       </p>
     </motion.div>
   );
