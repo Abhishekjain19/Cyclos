@@ -65,16 +65,20 @@ export default function ScanPage() {
         
         <div className="scan-result-stats">
           <div className="scan-result-stat">
-            <span className="scan-result-stat__lbl">Saved CO2</span>
+            <span className="scan-result-stat__lbl">Waste Type</span>
+            <span className="scan-result-stat__val">{scanned ? 'Plastic - Grade A' : '-'}</span>
+          </div>
+          <div className="scan-result-stat">
+            <span className="scan-result-stat__lbl">CO2 Estimation</span>
             <span className="scan-result-stat__val">{scanned ? '2.3 kg' : '-'}</span>
           </div>
           <div className="scan-result-stat">
-            <span className="scan-result-stat__lbl">Points</span>
-            <span className="scan-result-stat__val">{scanned ? '23' : '-'}</span>
+            <span className="scan-result-stat__lbl">Recycling Cost</span>
+            <span className="scan-result-stat__val">{scanned ? '₹12.50' : '-'}</span>
           </div>
           <div className="scan-result-stat">
-            <span className="scan-result-stat__lbl">Material</span>
-            <span className="scan-result-stat__val">{scanned ? 'Plastic' : '-'}</span>
+            <span className="scan-result-stat__lbl">Domains</span>
+            <span className="scan-result-stat__val">{scanned ? 'B2B, Home' : '-'}</span>
           </div>
         </div>
 

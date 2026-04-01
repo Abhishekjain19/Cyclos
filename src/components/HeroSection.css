@@ -44,7 +44,7 @@
   gap: 64px;
   align-items: center;
   min-height: 100vh;
-  padding-top: 100px;
+  padding-top: 160px;
   padding-bottom: 80px;
 }
 
@@ -433,17 +433,23 @@
   .hero__body {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    padding-top: 120px;
+    padding-top: 140px;
     padding-bottom: 60px;
     gap: 48px;
+    align-items: flex-start; /* Ensure padding-top is respected on mobile */
   }
   .hero__left { max-width: none; }
+  .hero__badge { margin-top: 40px; } /* Explicitly push the badge down */
   .hero__title { font-size: clamp(36px, 8vw, 56px); }
   .news-carousel__viewport { height: 360px; }
   .news-carousel__peek { display: none; }
 }
 
 @media (max-width: 520px) {
+  .hero__body {
+    padding-top: 180px; /* Base padding for mobile headers */
+  }
+  .hero__badge { margin-top: 60px; } /* Additional push for very small screens */
   .hero__actions { flex-direction: column; }
   .hero__cta-btn, .hero__ghost-btn { text-align: center; justify-content: center; }
   .news-carousel__viewport { height: 300px; }

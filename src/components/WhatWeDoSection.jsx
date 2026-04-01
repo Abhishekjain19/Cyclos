@@ -62,7 +62,11 @@ const cardVariants = {
 
 export default function WhatWeDoSection() {
   const sectionRef = useRef(null);
+  const tickerRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+  // Triple the services for a seamless infinite loop
+  const TICKER_SERVICES = [...SERVICES, ...SERVICES, ...SERVICES];
 
   return (
     <section id="what-we-do" className="wwd" ref={sectionRef}>
@@ -86,16 +90,27 @@ export default function WhatWeDoSection() {
             Cyclos gives you every tool to close the loop on waste.
           </p>
         </motion.div>
+      </div>
 
-        <div className="wwd__grid">
-          {SERVICES.map((s, i) => (
+      <div className="wwd__ticker-container">
+        <motion.div
+          className="wwd__ticker-track"
+          animate={{ x: [0, "-33.33%"] }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 35,
+              ease: "linear",
+            },
+          }}
+          whileHover={{ animationPlayState: "paused" }} // Using CSS pause trick
+          style={{ display: "flex" }}
+        >
+          {TICKER_SERVICES.map((s, i) => (
             <motion.div
               key={i}
               className="wwd__card"
-              custom={i}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={cardVariants}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
             >
               <div className="wwd__card-icon" style={{ color: s.color, background: `${s.color}15` }}>
@@ -107,7 +122,7 @@ export default function WhatWeDoSection() {
               <div className="wwd__card-hover-line" style={{ background: s.color }} />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

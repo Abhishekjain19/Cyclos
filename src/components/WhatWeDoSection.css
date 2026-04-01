@@ -61,30 +61,50 @@
   line-height: 1.7;
 }
 
-.wwd__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.wwd__ticker-container {
+  width: 100%;
+  overflow-x: auto; /* Manual scroll */
+  padding: 20px 0 80px;
   position: relative;
   z-index: 1;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.wwd__ticker-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.wwd__ticker-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  padding: 0 40px;
 }
 
 .wwd__card {
+  width: 380px; /* Fixed width for ticker items */
+  flex-shrink: 0;
   background: #ffffff;
   border: 2px solid #10B981;
   border-radius: var(--radius-lg);
   padding: 32px;
   position: relative;
   overflow: hidden;
-  cursor: default;
+  cursor: grab;
   transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.wwd__card:active {
+  cursor: grabbing;
 }
 
 .wwd__card:hover {
   background: rgba(16, 185, 129, 0.04);
   border-color: #059669;
   box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
-  transform: translateY(-4px);
+  transform: translateY(-8px);
 }
 
 .wwd__card-hover-line {
@@ -131,11 +151,9 @@
   line-height: 1.7;
 }
 
-@media (max-width: 1024px) {
-  .wwd__grid { grid-template-columns: repeat(2, 1fr); }
-}
-
 @media (max-width: 640px) {
-  .wwd__grid { grid-template-columns: 1fr; }
-  .wwd__card { padding: 24px; }
+  .wwd__card { 
+    width: 300px;
+    padding: 24px; 
+  }
 }

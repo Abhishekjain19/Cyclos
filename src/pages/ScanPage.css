@@ -90,10 +90,11 @@
 
 .scan-result-stats {
   background: #7543ff;
-  border-radius: 20px;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
+  border-radius: 24px;
+  padding: 20px 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   margin-bottom: 24px;
 }
 
@@ -104,15 +105,18 @@
   align-items: flex-start;
 }
 
-.scan-result-stat__val {
-  font-size: 16px;
-  font-weight: 700;
+.scan-result-stat__lbl {
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-bottom: 4px;
 }
 
-.scan-result-stat__lbl {
-  font-size: 12px;
-  color: rgba(255,255,255,0.8);
+.scan-result-stat__val {
+  font-size: 15px;
+  font-weight: 800;
+  font-family: var(--font-display);
 }
 
 .scan-result-btn {
