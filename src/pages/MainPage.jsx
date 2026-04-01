@@ -80,7 +80,7 @@ export default function MainPage() {
           transition={{ delay: 0.2 }}
         >
           <div className="dash-section-header">
-            <h3 className="dash-section-title">Nearby bin stations</h3>
+            <h3 className="dash-section-title">Nearby Ocean's</h3>
             {/* <a href="#" className="dash-section-viewall">View all</a>` */}
           </div>
           <div className="dash-map-card">
