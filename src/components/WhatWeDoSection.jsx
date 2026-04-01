@@ -1,50 +1,50 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { TbCamera, TbShoppingCart, TbRobot, TbMapPin, TbChartBar, TbLeaf } from 'react-icons/tb';
+import { TbCamera, TbMap, TbRobot, TbFlame, TbChartBar, TbFish } from 'react-icons/tb';
 import './WhatWeDoSection.css';
 
 const SERVICES = [
   {
     icon: <TbCamera size={28} />,
-    title: 'AI Waste Scanner',
-    desc: 'Point your camera at any waste item and get instant AI-powered classification, recycling instructions, and carbon footprint data.',
+    title: 'AI Marine Debris Scanner',
+    desc: 'Point your camera at ocean debris or coastal waste and get instant AI-powered identification, pollution severity rating, and remediation guidance.',
     color: '#53AEA5',
     tag: 'Computer Vision'
   },
   {
-    icon: <TbShoppingCart size={28} />,
-    title: 'Circular Marketplace',
-    desc: 'Buy and sell recycled materials and products in a privacy-first marketplace with location-based fuzzy matching.',
+    icon: <TbMap size={28} />,
+    title: 'Biodiversity Heatmap',
+    desc: 'Visualise global marine species populations on interactive maps. Track extinction risk zones and healthy reef corridors in real time.',
     color: '#7ECAC0',
-    tag: 'P2P Trading'
+    tag: 'Geo Intelligence'
   },
   {
     icon: <TbRobot size={28} />,
-    title: 'AI Chatbot Assistant',
-    desc: 'Get personalized advice on waste reduction, recycling tips, and sustainable alternatives powered by advanced AI.',
+    title: 'Marine AI Assistant',
+    desc: 'Get expert guidance on ocean conservation, species identification, cleanup logistics, and sustainable fishing practices powered by advanced AI.',
     color: '#AEE1D8',
     tag: 'NLP · LLM'
   },
   {
-    icon: <TbMapPin size={28} />,
-    title: 'Location-Based Matching',
-    desc: 'Discover nearby recycling opportunities and connect with local waste producers and consumers using spatial intelligence.',
+    icon: <TbFlame size={28} />,
+    title: 'Pollution Hotspot Alerts',
+    desc: 'Receive real-time alerts on pollution plumes, oil spills, and chemical runoff events near your registered coastal area or dive site.',
     color: '#39938B',
-    tag: 'Geo Intelligence'
+    tag: 'Real-time Monitoring'
   },
   {
     icon: <TbChartBar size={28} />,
-    title: 'Impact Dashboard',
-    desc: 'Track your carbon footprint reduction, points earned, and environmental impact through rich real-time analytics.',
+    title: 'Resource Overuse Dashboard',
+    desc: 'Monitor fishing intensity, seabed mining footprints, and freshwater extraction rates against sustainable limits through rich live analytics.',
     color: '#2F7E79',
     tag: 'Analytics'
   },
   {
-    icon: <TbLeaf size={28} />,
-    title: 'Domain-Based Matching',
-    desc: 'Declare your industry domain to get hyper-relevant recycling opportunities and marketplace recommendations.',
+    icon: <TbFish size={28} />,
+    title: 'Species & Habitat Matching',
+    desc: 'Match threatened marine habitats with restoration volunteers, NGOs, and funding bodies using smart biodiversity-profile filtering.',
     color: '#7ECAC0',
-    tag: 'Smart Filtering'
+    tag: 'Smart Matching'
   },
 ];
 
@@ -69,12 +69,12 @@ export default function WhatWeDoSection() {
         >
           <span className="wwd__tag">What We Do</span>
           <h2 className="wwd__title">
-            A Complete Ecosystem for
-            <span className="gradient-text"> Circular Economy</span>
+            A Complete Platform for
+            <span className="gradient-text"> Ocean Protection</span>
           </h2>
           <p className="wwd__desc">
-            From AI-powered waste identification to a decentralised marketplace —
-            Cyclos gives you every tool to close the loop on waste.
+            From AI-powered debris detection to real-time species collapse alerts —
+            Cyclos gives every ocean steward the tools to measure, act, and restore.
           </p>
         </motion.div>
       </div>

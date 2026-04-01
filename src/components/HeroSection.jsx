@@ -7,42 +7,42 @@ import './HeroSection.css';
 const NEWS_CARDS = [
   {
     id: 0,
-    tag: 'LATEST',
-    title: "Kochi's massive waste dump triggers health concerns.",
-    excerpt: "The phrase 'Kochi's massive waste dump triggers health concerns' highlights a serious issue in Kochi and surrounding areas. MORE",
-    img: '/news1.png',
+    tag: 'CRISIS',
+    title: "Pacific Garbage Patch now three times the size of France — and growing.",
+    excerpt: "New satellite imagery confirms the Great Pacific Garbage Patch has expanded by 8% since 2024, trapping an estimated 80,000 tonnes of plastic and decimating surface-layer marine life. MORE",
+    img: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=600&q=80',
     date: 'Mar 28, 2026',
   },
   {
     id: 1,
     tag: 'URGENT',
-    title: "India's rivers choking on 62 million tonnes of plastic waste annually.",
-    excerpt: "A new study reveals that India generates 62 million tonnes of waste per year with only 43 million tonnes being collected. MORE",
-    img: '/news2.png',
+    title: "75% of the world's coral reefs suffered bleaching events in 2026.",
+    excerpt: "The fourth global mass bleaching event on record has left scientists alarmed as rising sea surface temperatures stripped colour — and life — from reef systems across the Indo-Pacific. MORE",
+    img: 'https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=600&q=80',
     date: 'Mar 25, 2026',
   },
   {
     id: 2,
-    tag: 'CRISIS',
-    title: "Mumbai landfill reaches critical capacity — no backup plan in sight.",
-    excerpt: "Deonar, one of Asia's largest dumping grounds, has exceeded capacity by 40%, releasing toxic leachate into groundwater. MORE",
-    img: '/news3.png',
+    tag: 'ALERT',
+    title: "Microplastic concentrations in deep ocean trenches double since 2020.",
+    excerpt: "Researchers sampling the Mariana Trench found microplastic densities of 2,200 particles per litre — twice the 2020 baseline — raising fears of permanent contamination of the hadal zone. MORE",
+    img: 'https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&q=80',
     date: 'Mar 20, 2026',
   },
   {
     id: 3,
-    tag: 'ALERT',
-    title: "E-waste surge: India becomes world's 3rd largest generator.",
-    excerpt: "Electronic waste from discarded devices now accounts for 3.2 million tonnes per year with less than 5% formally recycled. MORE",
-    img: '/news4.png',
+    tag: 'LATEST',
+    title: "One in three marine species now listed as threatened by IUCN Red List.",
+    excerpt: "The updated IUCN Red List documents 34% of assessed marine species as Vulnerable, Endangered, or Critically Endangered — driven by pollution, overfishing, and habitat degradation. MORE",
+    img: 'https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=600&q=80',
     date: 'Mar 15, 2026',
   },
   {
     id: 4,
     tag: 'REPORT',
-    title: "Plastic ban compliance drops to 34% in 2026 SWM audit.",
-    excerpt: "The Solid Waste Management rules 2026 audit found major compliance gaps across 18 states, raising urgent regulatory questions. MORE",
-    img: '/news1.png',
+    title: "Ocean dead zones hit 700 globally as agricultural runoff intensifies.",
+    excerpt: "Hypoxic dead zones — where dissolved oxygen is too low to support life — have expanded to 245,000 km² of ocean floor, fuelled by nitrogen-heavy fertiliser runoff from coastal agriculture. MORE",
+    img: 'https://images.unsplash.com/photo-1564419320461-6870880221ad?w=600&q=80',
     date: 'Mar 10, 2026',
   },
 ];
@@ -171,7 +171,7 @@ export default function HeroSection() {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <TbLeaf size={14} />
-            <span>Circular Economy Platform · 2026</span>
+            <span>Marine Ecosystem Monitor · 2026</span>
           </motion.div>
 
           <motion.h1
@@ -180,9 +180,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            Turn Waste Into
+            Restore What
             <br />
-            <span className="hero__title-accent">Circular Value</span>
+            <span className="hero__title-accent">We've Lost</span>
           </motion.h1>
 
           <motion.p
@@ -191,9 +191,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Cyclos connects waste producers with recyclers - building a
-            sustainable marketplace where your waste becomes someone's
-            resource, and vice versa.
+            Cyclos unites ocean advocates, researchers, and coastal communities
+            to track marine pollution, monitor biodiversity collapse, and
+            combat the over-exploitation of our ocean resources.
           </motion.p>
 
           <motion.div
@@ -203,7 +203,7 @@ export default function HeroSection() {
             transition={{ delay: 0.65, duration: 0.7 }}
           >
             <Link to="/signup" className="hero__cta-btn">
-              Start Your Journey <TbArrowRight size={18} />
+              Join the Mission <TbArrowRight size={18} />
             </Link>
             <a href="#what-we-do" className="hero__ghost-btn">See How It Works</a>
           </motion.div>
@@ -218,7 +218,7 @@ export default function HeroSection() {
         >
           <div className="hero__carousel-label">
             <span className="hero__carousel-dot" />
-            Recent Waste Events
+            Ocean Crisis Updates
           </div>
           <NewsCarousel />
         </motion.div>
