@@ -10,6 +10,7 @@ import MarketPage from './pages/MarketPage';
 import BinLocationPage from './pages/BinLocationPage';
 import ComplaintPage from './pages/ComplaintPage';
 import ChatPage from './pages/ChatPage';
+import CommunityPage from './pages/CommunityPage';
 import BottomNav from './components/BottomNav';
 import './index.css';
 
@@ -43,6 +44,7 @@ function AppRoutes() {
         <Route path="/complaint" element={<ProtectedRoute><ComplaintPage /></ProtectedRoute>} />
         <Route path="/marketplace" element={<ProtectedRoute><MarketPage /></ProtectedRoute>} />
         <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+        <Route path="/community" element={<ProtectedRoute><CommunityPage /></ProtectedRoute>} />
       </Routes>
       {showNav && <BottomNav />}
     </>
