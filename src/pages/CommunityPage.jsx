@@ -448,20 +448,6 @@ export default function CommunityPage() {
               </motion.div>
             </div>
 
-            <div className="comm-home__stats">
-              <div className="comm-stat">
-                <span className="comm-stat__val">127</span>
-                <span className="comm-stat__lbl">Events this month</span>
-              </div>
-              <div className="comm-stat">
-                <span className="comm-stat__val">4,200+</span>
-                <span className="comm-stat__lbl">Volunteers</span>
-              </div>
-              <div className="comm-stat">
-                <span className="comm-stat__val">62 t</span>
-                <span className="comm-stat__lbl">Debris removed</span>
-              </div>
-            </div>
           </motion.div>
         )}
 
