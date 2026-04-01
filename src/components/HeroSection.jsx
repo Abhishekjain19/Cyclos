@@ -7,42 +7,42 @@ import './HeroSection.css';
 const NEWS_CARDS = [
   {
     id: 0,
-    tag: 'LATEST',
-    title: "Kochi's massive waste dump triggers health concerns.",
-    excerpt: "The phrase 'Kochi's massive waste dump triggers health concerns' highlights a serious issue in Kochi and surrounding areas. MORE",
-    img: '/news1.png',
+    tag: 'MARINE CRISIS',
+    title: "8 million tonnes of plastic enter oceans every year — India's coastline at breaking point.",
+    excerpt: "A new UNEP report reveals that India's 7,500 km coastline is among the worst affected by marine plastic pollution, with Mumbai, Chennai, and Kochi identified as critical hotspots. MORE",
+    img: '/marine_news1.png',
     date: 'Mar 28, 2026',
   },
   {
     id: 1,
-    tag: 'URGENT',
-    title: "India's rivers choking on 62 million tonnes of plastic waste annually.",
-    excerpt: "A new study reveals that India generates 62 million tonnes of waste per year with only 43 million tonnes being collected. MORE",
-    img: '/news2.png',
+    tag: 'OCEAN ALERT',
+    title: "Sea turtles found with plastic in 100% of sampled populations off Indian coast.",
+    excerpt: "Marine biologists from NIO Goa confirm that every sea turtle sampled in a 2026 study had ingested microplastics, threatening the survival of critically endangered species. MORE",
+    img: '/marine_news2.png',
     date: 'Mar 25, 2026',
   },
   {
     id: 2,
-    tag: 'CRISIS',
-    title: "Mumbai landfill reaches critical capacity — no backup plan in sight.",
-    excerpt: "Deonar, one of Asia's largest dumping grounds, has exceeded capacity by 40%, releasing toxic leachate into groundwater. MORE",
-    img: '/news3.png',
+    tag: 'COASTAL CRISIS',
+    title: "Ghost fishing nets blanket 40 km of Kerala shoreline — marine life suffocating.",
+    excerpt: "Abandoned fishing gear, or 'ghost nets,' now cover vast stretches of Kerala's coast, trapping dolphins, turtles, and fish in lethal underwater tangles. MORE",
+    img: '/marine_news3.png',
     date: 'Mar 20, 2026',
   },
   {
     id: 3,
-    tag: 'ALERT',
-    title: "E-waste surge: India becomes world's 3rd largest generator.",
-    excerpt: "Electronic waste from discarded devices now accounts for 3.2 million tonnes per year with less than 5% formally recycled. MORE",
-    img: '/news4.png',
+    tag: 'ACTION',
+    title: "India's largest coastal cleanup drive removes 12,000 tonnes of marine debris.",
+    excerpt: "Over 50,000 volunteers across 13 coastal states participated in the 2026 Ocean Swachh Abhiyan, recovering tonnes of plastic, rubber, and industrial waste from beaches. MORE",
+    img: '/marine_news4.png',
     date: 'Mar 15, 2026',
   },
   {
     id: 4,
-    tag: 'REPORT',
-    title: "Plastic ban compliance drops to 34% in 2026 SWM audit.",
-    excerpt: "The Solid Waste Management rules 2026 audit found major compliance gaps across 18 states, raising urgent regulatory questions. MORE",
-    img: '/news1.png',
+    tag: 'DEEP SEA',
+    title: "Microplastics detected at 7,000 m depth in the Bay of Bengal — deepest ever in Indian waters.",
+    excerpt: "Scientists from INCOIS Hyderabad discover microplastic contamination in deep-sea sediments, raising alarms about the full extent of ocean pollution beyond surface-level waste. MORE",
+    img: '/marine_news1.png',
     date: 'Mar 10, 2026',
   },
 ];
@@ -218,7 +218,7 @@ export default function HeroSection() {
         >
           <div className="hero__carousel-label">
             <span className="hero__carousel-dot" />
-            Recent Waste Events
+            Marine Waste Events
           </div>
           <NewsCarousel />
         </motion.div>
