@@ -1,12 +1,14 @@
 .main-page {
   min-height: 100vh;
-  background: #110e1b; /* Dark background matching the phone edges */
+  background: #110e1b;
+  /* Dark background matching the phone edges */
   padding-bottom: 100px;
 }
 
 /* Purple Header Background */
 .dash-header__block {
-  background: #9333ea; /* More vibrant purple */
+  background: #9333ea;
+  /* More vibrant purple */
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   padding: 60px 20px 48px;
@@ -16,7 +18,8 @@
 /* User Profile Pill */
 .dash-profile-pill {
   background: white;
-  border-radius: 100px; /* Capsule shape */
+  border-radius: 100px;
+  /* Capsule shape */
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -92,7 +95,8 @@
 }
 
 .dash-stat-minicard {
-  background: #110e1b; /* Dark backdrop */
+  background: #110e1b;
+  /* Dark backdrop */
   flex: 1;
   border-radius: 28px;
   padding: 24px 12px;
@@ -191,9 +195,18 @@
   width: 100%;
 }
 
-.material-bg-1 { background: #e0f2fe; }
-.material-bg-2 { background: #fef08a; }
-.material-bg-3 { background: #ffedd5; }
-.material-bg-4 { background: #dcfce7; }
+.material-bg-1 {
+  background: #e0f2fe;
+}
 
+.material-bg-2 {
+  background: #fef08a;
+}
 
+.material-bg-3 {
+  background: #ffedd5;
+}
+
+.material-bg-4 {
+  background: #dcfce7;
+}

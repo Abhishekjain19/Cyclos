@@ -63,17 +63,20 @@
 
 .wwd__ticker-container {
   width: 100%;
-  overflow-x: auto; /* Manual scroll */
+  overflow-x: auto;
+  /* Manual scroll */
   padding: 20px 0 80px;
   position: relative;
   z-index: 1;
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  scrollbar-width: none; /* Hide scrollbar Firefox */
+  scrollbar-width: none;
+  /* Hide scrollbar Firefox */
 }
 
 .wwd__ticker-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar Chrome/Safari */
+  display: none;
+  /* Hide scrollbar Chrome/Safari */
 }
 
 .wwd__ticker-track {
@@ -81,10 +84,18 @@
   gap: 24px;
   width: max-content;
   padding: 0 40px;
+  animation: wwd-scroll 35s linear infinite;
+  cursor: pointer;
+}
+
+@keyframes wwd-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .wwd__card {
-  width: 380px; /* Fixed width for ticker items */
+  width: 380px;
+  /* Fixed width for ticker items */
   flex-shrink: 0;
   background: #ffffff;
   border: 2px solid #10B981;
@@ -116,7 +127,10 @@
   opacity: 0;
   transition: opacity 0.3s;
 }
-.wwd__card:hover .wwd__card-hover-line { opacity: 1; }
+
+.wwd__card:hover .wwd__card-hover-line {
+  opacity: 1;
+}
 
 .wwd__card-icon {
   width: 56px;
@@ -152,8 +166,8 @@
 }
 
 @media (max-width: 640px) {
-  .wwd__card { 
+  .wwd__card {
     width: 300px;
-    padding: 24px; 
+    padding: 24px;
   }
 }

@@ -1,11 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TbCamera, TbShoppingCart, TbRobot, TbMapPin, TbChartBar, TbLeaf } from 'react-icons/tb';
 import './WhatWeDoSection.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const SERVICES = [
   {
@@ -52,25 +48,16 @@ const SERVICES = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-  })
-};
-
 export default function WhatWeDoSection() {
   const sectionRef = useRef(null);
-  const tickerRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const [paused, setPaused] = useState(false);
 
-  // Triple the services for a seamless infinite loop
-  const TICKER_SERVICES = [...SERVICES, ...SERVICES, ...SERVICES];
+  // Duplicate for seamless infinite loop
+  const TICKER_SERVICES = [...SERVICES, ...SERVICES];
 
   return (
     <section id="what-we-do" className="wwd" ref={sectionRef}>
-      {/* Background grid */}
       <div className="wwd__grid-bg" />
 
       <div className="container">
@@ -86,26 +73,21 @@ export default function WhatWeDoSection() {
             <span className="gradient-text"> Circular Economy</span>
           </h2>
           <p className="wwd__desc">
-            From AI - powered waste identification to a decentralised marketplace -
+            From AI-powered waste identification to a decentralised marketplace —
             Cyclos gives you every tool to close the loop on waste.
           </p>
         </motion.div>
       </div>
 
-      <div className="wwd__ticker-container">
-        <motion.div
+      {/* Ticker — hover freezes, mouse-out resumes */}
+      <div
+        className="wwd__ticker-container"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
           className="wwd__ticker-track"
-          animate={{ x: [0, "-33.33%"] }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 35,
-              ease: "linear",
-            },
-          }}
-          whileHover={{ animationPlayState: "paused" }} // Using CSS pause trick
-          style={{ display: "flex" }}
+          style={{ animationPlayState: paused ? 'paused' : 'running' }}
         >
           {TICKER_SERVICES.map((s, i) => (
             <motion.div
@@ -122,7 +104,7 @@ export default function WhatWeDoSection() {
               <div className="wwd__card-hover-line" style={{ background: s.color }} />
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
