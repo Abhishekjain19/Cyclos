@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { TbEdit, TbBell, TbLeaf, TbBolt, TbRecycle, TbShirt, TbPlant2 } from 'react-icons/tb';
+import { TbEdit, TbBell, TbLeaf, TbBolt, TbRecycle, TbShirt, TbPlant2, TbCloud } from 'react-icons/tb';
 
 /* Secondary domain materials — icon + colour mapping */
 const SECONDARY_MATERIALS = [
@@ -54,15 +54,18 @@ export default function MainPage() {
 
         {/* Stats Row */}
         <div className="dash-stats-row">
-          <div className="dash-stat-minicard" style={{ background: '#1a1625' }}>
+          <div className="dash-stat-minicard">
+            <TbRecycle size={24} className="dash-stat-icon" />
             <span className="dash-stat-val">3.5 kg</span>
             <span className="dash-stat-label">Recycle</span>
           </div>
-          <div className="dash-stat-minicard" style={{ background: '#1a1625' }}>
+          <div className="dash-stat-minicard">
+            <TbCloud size={24} className="dash-stat-icon" />
             <span className="dash-stat-val">5.2 g</span>
             <span className="dash-stat-label">Carbon</span>
           </div>
-          <div className="dash-stat-minicard" style={{ background: '#1a1625' }}>
+          <div className="dash-stat-minicard">
+            <TbLeaf size={24} className="dash-stat-icon" />
             <span className="dash-stat-val">5287</span>
             <span className="dash-stat-label">Points</span>
           </div>
